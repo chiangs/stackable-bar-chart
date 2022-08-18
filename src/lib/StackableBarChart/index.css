@@ -1,0 +1,55 @@
+/* Temp styles */
+
+/* #region Container */
+.stackable-container {
+}
+
+.stackable-container * {
+  box-sizing: border-box;
+}
+
+.stackable-container.linear {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: grid;
+  grid-gap: 15px;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 2fr;
+}
+
+.data-label,
+.data-bar {
+  display: flex;
+  align-items: stretch;
+}
+
+.data-label {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.data-label h3,
+.bar-value {
+  padding: 0;
+  margin: 0;
+  font-size: clamp(1rem, 10vw, 60px);
+}
+/* #endregion Container */
+
+/* #region Bar */
+.stackable-bar {
+  display: flex;
+  align-items: center;
+}
+
+.bar-value {
+  margin: 0;
+  padding: 5px;
+  font-size: clamp(1rem, 10vw, 60px);
+  font-weight: bold;
+  background: cadetblue;
+  border-radius: 4px 0 4px 0;
+}
+/* #endregion Bar */
