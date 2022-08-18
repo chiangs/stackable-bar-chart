@@ -3,12 +3,16 @@ export type Mode = "stacked" | "linear";
 export interface BarProps {
   value: number;
   label: string;
-  width?: number;
+  portion?: number;
+  renderPortion?: number;
   color?: string;
+  background?: string;
   mode?: Mode;
 }
 
 export interface ChartProps {
   data?: BarProps[];
-  mode: Mode;
+  mode?: Mode;
+  sortLinear?: boolean;
+  colorBackground?: string;
 }
