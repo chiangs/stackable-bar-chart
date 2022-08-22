@@ -1,29 +1,36 @@
 import React from "react";
-import type { BarProps, ChartProps } from "../__types";
-import Bar from "../Bar";
 import "./index.css";
+import type { BarProps, ChartProps, Rounding } from "../__types";
+import Bar from "../Bar";
 import Label from "../Label";
+
+const getRandom = () => Math.floor(Math.random() * (1000 - 0) + 0);
 
 const mockData: BarProps[] = [
   {
-    value: 100,
+    value: getRandom(),
     label: "test",
+    color: "red",
   },
   {
-    value: 1,
+    value: getRandom(),
     label: "test med",
+    color: "yellow",
   },
   {
-    value: 421,
+    value: getRandom(),
     label: "test longer",
+    color: "green",
   },
   {
-    value: 1000,
+    value: getRandom(),
     label: "test longer",
+    color: "blue",
   },
   {
-    value: 876,
+    value: getRandom(),
     label: "test longer",
+    color: "purple",
   },
 ];
 
@@ -39,13 +46,27 @@ const NAME_COMPONENT = "stackable-container";
 const sortDataSmallBig = (data: BarProps[]): BarProps[] =>
   data.sort((a, b) => a.value - b.value);
 
+const roundPortion = (value: number, method: Rounding): number => {
+  if (method === "up") {
+  }
+  if (method === "down") {
+  }
+  return Math.round(value);
+};
+
 /**
  * Calculates the actual portion and render portion
  * @param data
  * @returns BarProps[] with portion calculations
  */
-const calcPortionsForData = (data: BarProps[]): BarProps[] => {
-  const calcPortion = (value: number, total: number) => (value / total) * 100;
+const calcPortionsForData = (
+  data: BarProps[],
+  method: Rounding
+): BarProps[] => {
+  const calcPortion = (value: number, total: number, method: Rounding) => {
+    const portion = (value / total) * 100;
+    return roundPortion(portion, method);
+  };
   const calcRenderPortion = (value: number, largest: number) =>
     (value / largest) * 100;
   // largest used as base of 100% of container
@@ -55,25 +76,32 @@ const calcPortionsForData = (data: BarProps[]): BarProps[] => {
   }, 0);
   const updated = data.map((d) => ({
     ...d,
-    portion: calcPortion(d.value, sum),
+    portion: calcPortion(d.value, sum, method),
     renderPortion: calcRenderPortion(d.value, largest.value),
   }));
   return updated;
 };
 
 // TODO: Sort optional on linear?
+// TODO: Rounding options
+// TODO: Children for chart title
+// TODO: Stacked, absolute pos then use clientRect for xy on the right edge for the value for the next bar
+// TODO: Show legend for stacked
+// TODO: canHover for hidden
 const StackableBarChart: React.FC<Props> = ({
   data = mockData,
   sortLinear = true,
-  mode = "linear",
+  mode = "stacked",
+  rounding = "nearest",
   colorBackground = "#fff",
+  showPercentage = true,
 }) => {
   // Get background of app for knockout bar value text
   const background =
     colorBackground === "transparent" ? "#fff" : colorBackground;
   // Process data collection
   const sortedData = sortLinear ? sortDataSmallBig(data) : data;
-  const sortedDataWithPortion = calcPortionsForData(sortedData);
+  const sortedDataWithPortion = calcPortionsForData(sortedData, rounding);
   // Create the columns
   let chart;
   if (mode === "linear") {
@@ -83,12 +111,24 @@ const StackableBarChart: React.FC<Props> = ({
           <Label>{d.label}</Label>
         </div>
         <div className="data-bar">
-          <Bar {...d} background={background} />
+          <Bar {...d} background={background} mode={mode} />
         </div>
       </React.Fragment>
     ));
   } else {
-    null;
+    console.log(
+      "🚀 ~ file: index.tsx ~ line 126 ~ sortedDataWithPortion",
+      sortedDataWithPortion
+    );
+
+    chart = sortedDataWithPortion.map((d, i) => (
+      <Bar
+        {...d}
+        background={background}
+        mode={mode}
+        showPercentage={showPercentage}
+      />
+    ));
   }
 
   return (

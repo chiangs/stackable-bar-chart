@@ -2,6 +2,8 @@
 
 /* #region Container */
 .stackable-container {
+  --font-size: clamp(1rem, 5vw, 60px);
+  --radius-bar: 8px 0 8px 0;
   --color-fallback: cadetblue;
 }
 
@@ -9,8 +11,22 @@
   box-sizing: border-box;
 }
 
+.data-label {
+  color: var(--color-fallback);
+  white-space: nowrap;
+}
+
+.data-label h3,
+.bar-value {
+  padding: 0;
+  margin: 0;
+  font-size: var(--font-size);
+}
+
+/* #region linear */
 .stackable-container.linear {
-  max-width: 50vw;
+  background: transparent;
+  min-width: 350px;
   height: 100%;
   margin: 0;
   display: grid;
@@ -19,25 +35,28 @@
   grid-template-columns: 1fr 2fr;
 }
 
-.data-label,
-.data-bar {
+.linear .data-label,
+.linear .data-bar {
   display: flex;
   align-items: stretch;
 }
 
-.data-label {
-  color: var(--color-fallback);
-  white-space: nowrap;
+.linear .data-label {
   display: flex;
   align-items: center;
 }
+/* #endregion linear */
 
-.data-label h3,
-.bar-value {
-  padding: 0;
-  margin: 0;
-  font-size: clamp(1rem, 10vw, 60px);
+/* #region stacked */
+.stackable-container.stacked {
+  display: flex;
+  justify-content: flex-start;
 }
+
+.stacked .stackable-bar {
+  height: 125px;
+}
+/* #endregion stacked */
 /* #endregion Container */
 
 /* #region Bar */
@@ -47,13 +66,38 @@
   align-items: center;
 }
 
-.bar-value {
-  margin: 0;
-  padding: 5px;
-  font-size: clamp(1rem, 10vw, 60px);
-  font-weight: bold;
-  background: var(--color-fallback);
-  border-radius: 8px 0 8px 0;
+.stackable-bar.linear {
+  border-radius: var(--radius-bar);
 }
 
+.bar-value {
+  height: 100%;
+  margin: 0;
+  padding: 5px;
+  font-size: var(--font-size);
+  font-weight: bold;
+  background: var(--color-fallback);
+}
+
+.stacked-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.stacked-content * {
+  margin: 0;
+}
+
+.stacked-content .bar-value-text {
+  font-size: clamp(1rem, 3vw, 60px);
+}
+
+.bar-label-text {
+  font-size: clamp(1rem, 2vw, 60px);
+  white-space: nowrap;
+}
 /* #endregion Bar */
