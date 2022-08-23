@@ -66,6 +66,17 @@
   align-items: center;
 }
 
+.stackable-bar.tooltip {
+  transform: scale(1);
+  transition: all 0.1s ease-in;
+}
+
+.stackable-bar.tooltip:hover {
+  transform: scale(1.1);
+  transition: all 0.15s ease-out;
+  z-index: 100;
+}
+
 .stackable-bar.linear {
   border-radius: var(--radius-bar);
 }
@@ -93,11 +104,11 @@
 }
 
 .stacked-content .bar-value-text {
-  font-size: clamp(1rem, 3vw, 60px);
+  font-size: clamp(1.5rem, 2.5vw, 60px);
 }
 
 .bar-label-text {
-  font-size: clamp(1rem, 2vw, 60px);
+  font-size: clamp(1rem, 1.5vw, 60px);
   white-space: nowrap;
 }
 /* #endregion Bar */

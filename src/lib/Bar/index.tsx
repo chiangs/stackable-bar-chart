@@ -13,9 +13,11 @@ const Bar: React.FC<Props> = ({
   renderPortion = 0,
   mode = "linear",
   showPercentage = false,
+  showTooltip = false,
 }) => {
   const displayValue = showPercentage ? `${portion}%` : `${value}`;
   const width = `${mode === "linear" ? renderPortion : portion}%`;
+  const tooltip = showTooltip ? "tooltip" : "";
   const styleBar = { width, background: color };
   const styleText = {
     color: background,
@@ -42,12 +44,13 @@ const Bar: React.FC<Props> = ({
   }
   return (
     <div
-      className={`${NAME_COMPONENT} ${mode}`}
+      className={`${NAME_COMPONENT} ${mode} ${tooltip}`}
       style={styleBar}
       data-testid={NAME_COMPONENT}
     >
       <div className="bar-value" style={styleBar}>
         {barContent}
+        {/* Add tooltip here and on hover or active reveal */}
       </div>
     </div>
   );

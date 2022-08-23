@@ -2,6 +2,8 @@ export type Mode = "stacked" | "linear";
 
 export type Rounding = "nearest" | "up" | "down";
 
+export type Position = "none" | "top" | "bottom" | "left" | "right";
+
 export interface BarProps {
   value: number;
   label: string;
@@ -11,6 +13,7 @@ export interface BarProps {
   background?: string;
   mode?: Mode;
   showPercentage?: boolean;
+  showTooltip?: boolean;
 }
 
 export interface ChartProps {
@@ -18,6 +21,10 @@ export interface ChartProps {
   mode?: Mode;
   rounding?: Rounding;
   sortLinear?: boolean;
+  showTooltip?: boolean;
   colorBackground?: string;
   showPercentage?: boolean;
+  titlePosition?: Position;
+  legendPosition?: Position;
+  children?: any;
 }

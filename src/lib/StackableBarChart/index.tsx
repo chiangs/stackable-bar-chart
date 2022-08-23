@@ -84,9 +84,6 @@ const calcPortionsForData = (
 
 // TODO: Sort optional on linear?
 // TODO: Rounding options
-// TODO: Children for chart title
-// TODO: Stacked, absolute pos then use clientRect for xy on the right edge for the value for the next bar
-// TODO: Show legend for stacked
 // TODO: canHover for hidden
 const StackableBarChart: React.FC<Props> = ({
   data = mockData,
@@ -95,6 +92,10 @@ const StackableBarChart: React.FC<Props> = ({
   rounding = "nearest",
   colorBackground = "#fff",
   showPercentage = true,
+  showTooltip = true,
+  titlePosition = "none",
+  legendPosition = "none",
+  children,
 }) => {
   // Get background of app for knockout bar value text
   const background =
@@ -102,10 +103,10 @@ const StackableBarChart: React.FC<Props> = ({
   // Process data collection
   const sortedData = sortLinear ? sortDataSmallBig(data) : data;
   const sortedDataWithPortion = calcPortionsForData(sortedData, rounding);
-  // Create the columns
-  let chart;
+  // Bars
+  let bars;
   if (mode === "linear") {
-    chart = sortedDataWithPortion.map((d, i) => (
+    bars = sortedDataWithPortion.map((d, i) => (
       <React.Fragment key={`${d.label}${i}`}>
         <div className="data-label" style={{ color: d.color }}>
           <Label>{d.label}</Label>
@@ -116,19 +117,44 @@ const StackableBarChart: React.FC<Props> = ({
       </React.Fragment>
     ));
   } else {
-    console.log(
-      "🚀 ~ file: index.tsx ~ line 126 ~ sortedDataWithPortion",
-      sortedDataWithPortion
-    );
-
-    chart = sortedDataWithPortion.map((d, i) => (
+    bars = sortedDataWithPortion.map((d, i) => (
       <Bar
         {...d}
         background={background}
         mode={mode}
         showPercentage={showPercentage}
+        showTooltip={showTooltip}
       />
     ));
+  }
+
+  // Title
+  let title = null;
+  if (titlePosition !== "none") {
+    title = <h2>{title}</h2>;
+  }
+
+  // Legend
+  let legend = null;
+  if (legendPosition !== "none") {
+  }
+
+  // Combined chart elements
+  let chart;
+  if (mode === "linear") {
+    chart = (
+      <div className="chart-container">
+        {bars}
+        {title}
+      </div>
+    );
+  } else {
+    chart = (
+      <>
+        {bars}
+        {title}
+      </>
+    );
   }
 
   return (
