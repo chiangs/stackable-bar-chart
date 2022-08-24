@@ -1,5 +1,9 @@
 /* Temp styles */
 
+/* #region Utils */
+
+/* #endregion Utils */
+
 /* #region Container */
 .stackable-container {
   --font-size: clamp(1rem, 5vw, 60px);
@@ -9,6 +13,11 @@
 
 .stackable-container * {
   box-sizing: border-box;
+}
+
+.chart-title {
+  width: 100%;
+  text-align: center;
 }
 
 .data-label {
@@ -25,6 +34,12 @@
 
 /* #region linear */
 .stackable-container.linear {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.stackable-container.linear .chart-container {
   background: transparent;
   min-width: 350px;
   height: 100%;
@@ -45,10 +60,37 @@
   display: flex;
   align-items: center;
 }
+
+.linear.title-top {
+  flex-direction: column-reverse;
+}
+
+.linear.title-left {
+  flex-direction: row-reverse;
+}
+
+.linear.title-right {
+  flex-direction: row;
+}
+
+.linear.title-left .chart-title,
+.linear.title-right .chart-title {
+  width: initial;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
 /* #endregion linear */
 
 /* #region stacked */
 .stackable-container.stacked {
+  display: flex;
+  flex-direction: column;
+}
+
+.stackable-container.stacked .chart-bars {
+  width: 100%;
   display: flex;
   justify-content: flex-start;
 }
@@ -77,11 +119,13 @@
   z-index: 100;
 }
 
-.stackable-bar.linear {
+.stackable-bar.linear,
+.linear .bar-value {
   border-radius: var(--radius-bar);
 }
 
 .bar-value {
+  width: 0;
   height: 100%;
   margin: 0;
   padding: 5px;

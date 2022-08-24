@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import type { BarProps } from "../__types";
 
 type Props = BarProps;
@@ -16,12 +17,30 @@ const Bar: React.FC<Props> = ({
   showTooltip = false,
 }) => {
   const displayValue = showPercentage ? `${portion}%` : `${value}`;
-  const width = `${mode === "linear" ? renderPortion : portion}%`;
+  const valueWidth = mode === "linear" ? renderPortion : portion;
   const tooltip = showTooltip ? "tooltip" : "";
-  const styleBar = { width, background: color };
+
+  // Default internal width
+  const [barWidth, setBarWidth] = useState(0);
+  // On load, update width
+  useEffect(() => {
+    setBarWidth(valueWidth);
+  }, []);
+
+  const width = `${barWidth}%`;
+  const styleBar = {
+    width,
+    background: color,
+  };
+  const animatedStyle = {
+    ...styleBar,
+    transition: "width .2s ease-out",
+  };
+  const styleContainer = mode === "linear" ? animatedStyle : styleBar;
   const styleText = {
     color: background,
   };
+  // Create bar content
   let barContent = (
     <span className="bar-value-text" style={styleText}>
       {value}
@@ -45,12 +64,11 @@ const Bar: React.FC<Props> = ({
   return (
     <div
       className={`${NAME_COMPONENT} ${mode} ${tooltip}`}
-      style={styleBar}
+      style={styleContainer}
       data-testid={NAME_COMPONENT}
     >
-      <div className="bar-value" style={styleBar}>
+      <div className="bar-value" style={styleContainer}>
         {barContent}
-        {/* Add tooltip here and on hover or active reveal */}
       </div>
     </div>
   );

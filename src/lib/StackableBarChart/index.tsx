@@ -88,12 +88,12 @@ const calcPortionsForData = (
 const StackableBarChart: React.FC<Props> = ({
   data = mockData,
   sortLinear = true,
-  mode = "stacked",
+  mode = "linear",
   rounding = "nearest",
   colorBackground = "#fff",
   showPercentage = true,
   showTooltip = true,
-  titlePosition = "none",
+  titlePosition = "top",
   legendPosition = "none",
   children,
 }) => {
@@ -131,7 +131,7 @@ const StackableBarChart: React.FC<Props> = ({
   // Title
   let title = null;
   if (titlePosition !== "none") {
-    title = <h2>{title}</h2>;
+    title = <h2 className="title">{children}</h2>;
   }
 
   // Legend
@@ -143,23 +143,23 @@ const StackableBarChart: React.FC<Props> = ({
   let chart;
   if (mode === "linear") {
     chart = (
-      <div className="chart-container">
-        {bars}
-        {title}
-      </div>
+      <>
+        <div className="chart-container">{bars}</div>
+        <div className="chart-title">{title}</div>
+      </>
     );
   } else {
     chart = (
-      <>
-        {bars}
-        {title}
-      </>
+      <div className="chart-container">
+        <div className="chart-bars">{bars}</div>
+        <div className="chart-title">{title}</div>
+      </div>
     );
   }
 
   return (
     <figure
-      className={`${NAME_COMPONENT} ${mode}`}
+      className={`${NAME_COMPONENT} ${mode} title-${titlePosition}`}
       data-testid={NAME_COMPONENT}
     >
       {chart}
