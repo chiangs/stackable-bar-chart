@@ -16,28 +16,23 @@ const getRandom = () => Math.floor(Math.random() * (1000 - 0) + 0);
 const mockData: BarProps[] = [
   {
     value: getRandom(),
-    label: "test",
-    color: "red",
+    label: "test 1",
+    color: "#F7A355",
   },
   {
     value: getRandom(),
-    label: "test med",
-    color: "yellow",
+    label: "test 2",
+    color: "#4D93E5",
   },
   {
     value: getRandom(),
-    label: "test longer",
-    color: "green",
+    label: "test 3 really",
+    color: "#37C6A8",
   },
   {
     value: getRandom(),
-    label: "test longer",
-    color: "blue",
-  },
-  {
-    value: getRandom(),
-    label: "test longer",
-    color: "purple",
+    label: "test 4 really long label",
+    color: "#439090",
   },
 ];
 
@@ -113,16 +108,17 @@ const calcPortionsForData = (
   return updated;
 };
 
+// TODO: Hover tooltip for linear
+// TODO: Tests
 const StackableBarChart: React.FC<Props> = ({
   data = mockData,
   sortLinear = "largest",
-  mode = "stacked",
+  mode = "linear",
   rounding = "nearest",
   colorBackground = "#fff",
   showPercentage = true,
   showTooltip = true,
   titlePosition = "bottom",
-  legendPosition = "none",
   children,
 }) => {
   const [tooltipContent, setTooltipContent] = useState<BarData | null>();
@@ -173,11 +169,6 @@ const StackableBarChart: React.FC<Props> = ({
   let title = null;
   if (titlePosition !== "none") {
     title = children;
-  }
-
-  // Legend
-  let legend = null;
-  if (legendPosition !== "none") {
   }
 
   // Tooltip

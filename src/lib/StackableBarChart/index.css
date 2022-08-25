@@ -7,7 +7,7 @@
 /* #region Container */
 .stackable-container {
   --font-size: clamp(1rem, 5vw, 60px);
-  --radius-bar: 8px 0 8px 0;
+  --radius-bar: 15px 0 15px 0;
   --color-fallback: cadetblue;
 }
 
@@ -24,6 +24,7 @@
 .data-label {
   color: var(--color-fallback);
   white-space: nowrap;
+  text-align: right;
 }
 
 .data-label h3,
@@ -58,8 +59,8 @@
 }
 
 .linear .data-label {
-  display: flex;
   align-items: center;
+  /* justify-content: flex-end; */
 }
 
 .linear.title-top {

@@ -36,6 +36,5 @@ export interface ChartProps {
   colorBackground?: string;
   showPercentage?: boolean;
   titlePosition?: Position;
-  legendPosition?: Position;
   children?: any;
 }
