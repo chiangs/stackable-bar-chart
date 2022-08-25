@@ -16,6 +16,7 @@
 }
 
 .chart-title {
+  margin-top: 20px;
   width: 100%;
   text-align: center;
 }
@@ -93,6 +94,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
+  position: relative;
 }
 
 .stacked .stackable-bar {
@@ -106,6 +108,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
 
 .stackable-bar.tooltip {
@@ -117,6 +120,22 @@
   transform: scale(1.1);
   transition: all 0.15s ease-out;
   z-index: 100;
+}
+
+.tooltip-container {
+  z-index: 100;
+  position: absolute;
+  bottom: -35px;
+  left: 0;
+  margin: 0;
+  padding: 5px;
+  background-color: white;
+}
+
+.stackable-bar.tooltip:hover .bar-value,
+.stackable-bar.tooltip:hover .bar-value-text {
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
 }
 
 .stackable-bar.linear,

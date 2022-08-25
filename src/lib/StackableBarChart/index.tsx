@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.css";
-import type { BarProps, ChartProps, Rounding } from "../__types";
+import type { BarData, BarProps, ChartProps, Rounding } from "../__types";
 import Bar from "../Bar";
 import Label from "../Label";
+import Tooltip from "../Tooltip";
 
 const getRandom = () => Math.floor(Math.random() * (1000 - 0) + 0);
 
@@ -88,15 +89,20 @@ const calcPortionsForData = (
 const StackableBarChart: React.FC<Props> = ({
   data = mockData,
   sortLinear = true,
-  mode = "linear",
+  mode = "stacked",
   rounding = "nearest",
   colorBackground = "#fff",
   showPercentage = true,
   showTooltip = true,
-  titlePosition = "top",
+  titlePosition = "bottom",
   legendPosition = "none",
   children,
 }) => {
+  const [tooltipContent, setTooltipContent] = useState<BarData | null>();
+
+  // Events
+  const onHoverBar = (data: BarData | null) => setTooltipContent(data);
+
   // Get background of app for knockout bar value text
   const background =
     colorBackground === "transparent" ? "#fff" : colorBackground;
@@ -124,6 +130,7 @@ const StackableBarChart: React.FC<Props> = ({
         mode={mode}
         showPercentage={showPercentage}
         showTooltip={showTooltip}
+        revealTooltipHandler={onHoverBar}
       />
     ));
   }
@@ -131,13 +138,18 @@ const StackableBarChart: React.FC<Props> = ({
   // Title
   let title = null;
   if (titlePosition !== "none") {
-    title = <h2 className="title">{children}</h2>;
+    title = children;
   }
 
   // Legend
   let legend = null;
   if (legendPosition !== "none") {
   }
+
+  // Tooltip
+  const tooltip = showTooltip && tooltipContent && (
+    <Tooltip {...tooltipContent} />
+  );
 
   // Combined chart elements
   let chart;
@@ -151,7 +163,11 @@ const StackableBarChart: React.FC<Props> = ({
   } else {
     chart = (
       <div className="chart-container">
-        <div className="chart-bars">{bars}</div>
+        <div className="chart-bars">
+          {bars}
+          {tooltip}
+        </div>
+
         <div className="chart-title">{title}</div>
       </div>
     );

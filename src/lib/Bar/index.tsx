@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import type { BarProps } from "../__types";
+import type { BarData, BarProps } from "../__types";
 
 type Props = BarProps;
 
@@ -15,6 +15,7 @@ const Bar: React.FC<Props> = ({
   mode = "linear",
   showPercentage = false,
   showTooltip = false,
+  revealTooltipHandler = (data: BarData | null) => data,
 }) => {
   const displayValue = showPercentage ? `${portion}%` : `${value}`;
   const valueWidth = mode === "linear" ? renderPortion : portion;
@@ -61,11 +62,22 @@ const Bar: React.FC<Props> = ({
       </div>
     );
   }
+
   return (
     <div
       className={`${NAME_COMPONENT} ${mode} ${tooltip}`}
       style={styleContainer}
       data-testid={NAME_COMPONENT}
+      onMouseOver={() =>
+        revealTooltipHandler({
+          label,
+          value,
+          color: background,
+          background: color,
+          percentage: portion,
+        })
+      }
+      onMouseOut={() => revealTooltipHandler(null)}
     >
       <div className="bar-value" style={styleContainer}>
         {barContent}
