@@ -153,6 +153,11 @@
   background: var(--color-fallback);
 }
 
+.data-label,
+.bar-value-text {
+  user-select: all;
+}
+
 .stacked-content {
   width: 100%;
   height: 100%;

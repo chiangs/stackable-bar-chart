@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import "./index.css";
-import type { BarData, BarProps, ChartProps, Rounding } from "../__types";
+import type {
+  BarData,
+  BarProps,
+  ChartProps,
+  Rounding,
+  SortProperty,
+} from "../__types";
 import Bar from "../Bar";
 import Label from "../Label";
 import Tooltip from "../Tooltip";
@@ -44,8 +50,13 @@ const NAME_COMPONENT = "stackable-container";
  * @param data
  * @returns sorted BarProps[]
  */
-const sortDataSmallBig = (data: BarProps[]): BarProps[] =>
-  data.sort((a, b) => a.value - b.value);
+const sortDataSmallBig = (
+  data: BarProps[],
+  sortedBy: SortProperty = "largest"
+): BarProps[] =>
+  data.sort((a, b) =>
+    sortedBy === "largest" ? a.value - b.value : b.value - a.value
+  );
 
 const roundPortion = (value: number, method: Rounding): number => {
   if (method === "up") {
@@ -64,7 +75,8 @@ const roundPortion = (value: number, method: Rounding): number => {
  */
 const calcPortionsForData = (
   data: BarProps[],
-  method: Rounding
+  method: Rounding,
+  sortedBy: SortProperty = "none"
 ): BarProps[] => {
   const calcPortion = (value: number, total: number, method: Rounding) => {
     const portion = (value / total) * 100;
@@ -72,8 +84,24 @@ const calcPortionsForData = (
   };
   const calcRenderPortion = (value: number, largest: number) =>
     (value / largest) * 100;
+  const findLargest = (collection: BarProps[]) => {
+    let temp = 0;
+    let largest = collection[0];
+    collection.forEach((d) => {
+      if (temp < d.value) {
+        temp = d.value;
+        largest = d;
+      }
+    });
+    return largest;
+  };
   // largest used as base of 100% of container
-  const largest = data[data.length - 1];
+  const largest =
+    sortedBy === "none"
+      ? findLargest(data)
+      : sortedBy === "largest"
+      ? data[data.length - 1]
+      : data[0];
   const sum = data.reduce((t, o) => {
     return t + o.value;
   }, 0);
@@ -85,11 +113,9 @@ const calcPortionsForData = (
   return updated;
 };
 
-// TODO: Sort optional on linear?
-// TODO: Rounding options
 const StackableBarChart: React.FC<Props> = ({
   data = mockData,
-  sortLinear = true,
+  sortLinear = "largest",
   mode = "stacked",
   rounding = "nearest",
   colorBackground = "#fff",
@@ -107,9 +133,16 @@ const StackableBarChart: React.FC<Props> = ({
   // Get background of app for knockout bar value text
   const background =
     colorBackground === "transparent" ? "#fff" : colorBackground;
+
   // Process data collection
-  const sortedData = sortLinear ? sortDataSmallBig(data) : data;
-  const sortedDataWithPortion = calcPortionsForData(sortedData, rounding);
+  const sortedData =
+    sortLinear === "none" ? data : sortDataSmallBig(data, sortLinear);
+  const sortedDataWithPortion = calcPortionsForData(
+    sortedData,
+    rounding,
+    sortLinear
+  );
+
   // Bars
   let bars;
   if (mode === "linear") {

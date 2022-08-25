@@ -4,6 +4,8 @@ export type Rounding = "nearest" | "up" | "down";
 
 export type Position = "none" | "top" | "bottom" | "left" | "right";
 
+export type SortProperty = "none" | "largest" | "smallest";
+
 export interface BarData {
   label: string;
   value: number;
@@ -29,7 +31,7 @@ export interface ChartProps {
   data?: BarProps[];
   mode?: Mode;
   rounding?: Rounding;
-  sortLinear?: boolean;
+  sortLinear?: SortProperty;
   showTooltip?: boolean;
   colorBackground?: string;
   showPercentage?: boolean;
