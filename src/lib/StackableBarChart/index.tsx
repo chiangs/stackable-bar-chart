@@ -49,8 +49,10 @@ const sortDataSmallBig = (data: BarProps[]): BarProps[] =>
 
 const roundPortion = (value: number, method: Rounding): number => {
   if (method === "up") {
+    return Math.ceil(value);
   }
   if (method === "down") {
+    return Math.floor(value);
   }
   return Math.round(value);
 };
@@ -85,7 +87,6 @@ const calcPortionsForData = (
 
 // TODO: Sort optional on linear?
 // TODO: Rounding options
-// TODO: canHover for hidden
 const StackableBarChart: React.FC<Props> = ({
   data = mockData,
   sortLinear = true,
