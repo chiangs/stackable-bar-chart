@@ -109,14 +109,16 @@ const calcPortionsForData = (
 };
 
 // TODO: Hover tooltip for linear
+// TODO: Update function documenation and reorg code
+// TODO: Optimize CSS file
 // TODO: Tests
 const StackableBarChart: React.FC<Props> = ({
   data = mockData,
   sortLinear = "largest",
-  mode = "linear",
+  mode = "stacked",
   rounding = "nearest",
   colorBackground = "#fff",
-  showPercentage = true,
+  showPercentage = false,
   showTooltip = true,
   titlePosition = "bottom",
   children,
@@ -141,7 +143,7 @@ const StackableBarChart: React.FC<Props> = ({
 
   // Bars
   let bars;
-  if (mode === "linear") {
+  if (mode === "stacked") {
     bars = sortedDataWithPortion.map((d, i) => (
       <React.Fragment key={`${d.label}${i}`}>
         <div className="data-label" style={{ color: d.color }}>
@@ -178,7 +180,7 @@ const StackableBarChart: React.FC<Props> = ({
 
   // Combined chart elements
   let chart;
-  if (mode === "linear") {
+  if (mode === "stacked") {
     chart = (
       <>
         <div className="chart-container">{bars}</div>

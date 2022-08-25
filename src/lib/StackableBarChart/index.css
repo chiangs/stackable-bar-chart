@@ -34,14 +34,14 @@
   font-size: var(--font-size);
 }
 
-/* #region linear */
-.stackable-container.linear {
+/* #region stacked */
+.stackable-container.stacked {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 }
 
-.stackable-container.linear .chart-container {
+.stackable-container.stacked .chart-container {
   background: transparent;
   min-width: 350px;
   height: 100%;
@@ -52,56 +52,61 @@
   grid-template-columns: 1fr 2fr;
 }
 
-.linear .data-label,
-.linear .data-bar {
+.stacked .data-label,
+.stacked .data-bar {
   display: flex;
   align-items: stretch;
 }
 
-.linear .data-label {
+.stacked .data-label {
   align-items: center;
   /* justify-content: flex-end; */
 }
 
-.linear.title-top {
+.stacked.title-top {
   flex-direction: column-reverse;
 }
 
-.linear.title-left {
+.stacked.title-left {
   flex-direction: row-reverse;
 }
 
-.linear.title-right {
+.stacked.title-right {
   flex-direction: row;
 }
 
-.linear.title-left .chart-title,
-.linear.title-right .chart-title {
+.stacked.title-left .chart-title,
+.stacked.title-right .chart-title {
   width: initial;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
 }
-/* #endregion linear */
 
-/* #region stacked */
-.stackable-container.stacked {
+.stackable-bar.stacked,
+.stacked .bar-value {
+  border-radius: var(--radius-bar);
+}
+/* #endregion stacked */
+
+/* #region linear */
+.stackable-container.linear {
   display: flex;
   flex-direction: column;
 }
 
-.stackable-container.stacked .chart-bars {
+.stackable-container.linear .chart-bars {
   width: 100%;
   display: flex;
   justify-content: flex-start;
   position: relative;
 }
 
-.stacked .stackable-bar {
+.linear .stackable-bar {
   height: 125px;
 }
-/* #endregion stacked */
+/* #endregion linear */
 /* #endregion Container */
 
 /* #region Bar */
@@ -139,11 +144,6 @@
   transition: opacity 0.2s ease-in;
 }
 
-.stackable-bar.linear,
-.linear .bar-value {
-  border-radius: var(--radius-bar);
-}
-
 .bar-value {
   width: 0;
   height: 100%;
@@ -173,11 +173,11 @@
 }
 
 .stacked-content .bar-value-text {
-  font-size: clamp(1.5rem, 2.5vw, 60px);
+  font-size: clamp(1.5rem, 3vw, 60px);
 }
 
 .bar-label-text {
-  font-size: clamp(1rem, 1.5vw, 60px);
+  font-size: clamp(1.3rem, 1.5vw, 60px);
   white-space: nowrap;
 }
 /* #endregion Bar */

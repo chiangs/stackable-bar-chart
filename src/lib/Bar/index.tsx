@@ -12,13 +12,13 @@ const Bar: React.FC<Props> = ({
   background = undefined,
   portion = 0,
   renderPortion = 0,
-  mode = "linear",
+  mode = "stacked",
   showPercentage = false,
   showTooltip = false,
   revealTooltipHandler = (data: BarData | null) => data,
 }) => {
   const displayValue = showPercentage ? `${portion}%` : `${value}`;
-  const valueWidth = mode === "linear" ? renderPortion : portion;
+  const valueWidth = mode === "stacked" ? renderPortion : portion;
   const tooltip = showTooltip ? "tooltip" : "";
 
   // Default internal width
@@ -37,7 +37,7 @@ const Bar: React.FC<Props> = ({
     ...styleBar,
     transition: "width .2s ease-out",
   };
-  const styleContainer = mode === "linear" ? animatedStyle : styleBar;
+  const styleContainer = mode === "stacked" ? animatedStyle : styleBar;
   const styleText = {
     color: background,
   };
@@ -47,7 +47,7 @@ const Bar: React.FC<Props> = ({
       {value}
     </span>
   );
-  if (mode === "stacked") {
+  if (mode === "linear") {
     barContent = (
       <div className="stacked-content" style={styleText}>
         <div className="bar-value-text">
