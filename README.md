@@ -76,12 +76,12 @@ import 'node_modules/stackable-bar-chart/dist/style.css';
 ```
 
 ```ts
-import type { WaffleChartProps } from 'stackable-bar-chart';
-import { WaffleChart } from 'stackable-bar-chart';
+import type { ChartProps } from 'stackable-bar-chart';
+import { StackableBarChart } from 'stackable-bar-chart';
 
-type Props = WaffleChartProps;
+type Props = ChartProps;
 
-const MyChart: React.FC<Props> = (props: Props) => <WaffleChart {...props}/>
+const MyChart: React.FC<Props> = (props: Props) => <StackableBarChart {...props}>Chart title</StackableBarChart>
 
 export default MyChart;
 ```
@@ -89,12 +89,12 @@ export default MyChart;
 For Remix projects just import the style url in the `links` at the `root.tsx`.
 
 ```ts
-import waffleChartStylesUrl from 'node_modules/stackable-bar-chart/dist/style.css';
+import stackableBarChartStyleUrl from 'node_modules/stackable-bar-chart/dist/style.css';
 
 export const links: LinksFunction = () => [
     {
         rel: 'stylesheet',
-        href: waffleChartStylesUrl,
+        href: stackableBarChartStyleUrl,
     },
 ];
 ```
@@ -131,24 +131,6 @@ Testing methodology follows the testing-library guiding principles and focusing 
 Latest coverage report:
 
 ```
-Test Files  5 passed (5)
-     Tests  12 passed (12)
-  Start at  22:40:55
-  Duration  2.30s (setup 1ms, collect 797ms, tests 271ms)
-
--------------|---------|----------|---------|---------|-------------------
-File         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
--------------|---------|----------|---------|---------|-------------------
-All files    |   98.89 |    87.05 |   94.44 |   98.89 |                   
- Chart       |     100 |      100 |     100 |     100 | 
-  index.tsx  |     100 |      100 |     100 |     100 | 
- DataDisplay |     100 |      100 |     100 |     100 | 
-  index.tsx  |     100 |      100 |     100 |     100 | 
- Total       |     100 |      100 |     100 |     100 | 
-  index.tsx  |     100 |      100 |     100 |     100 | 
- WaffleChart |   98.41 |     84.5 |   91.66 |   98.41 | 
-  index.tsx  |   98.41 |     84.5 |   91.66 |   98.41 | 31-32,103-104    
--------------|---------|----------|---------|---------|-------------------
 ```
 
 Testing is built and run with:

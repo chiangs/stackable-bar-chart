@@ -11,39 +11,15 @@ import Bar from "../Bar";
 import Label from "../Label";
 import Tooltip from "../Tooltip";
 
-const getRandom = () => Math.floor(Math.random() * (1000 - 0) + 0);
-
-const mockData: BarProps[] = [
-  {
-    value: getRandom(),
-    label: "test 1",
-    color: "#F7A355",
-  },
-  {
-    value: getRandom(),
-    label: "test 2",
-    color: "#4D93E5",
-  },
-  {
-    value: getRandom(),
-    label: "test 3 really",
-    color: "#37C6A8",
-  },
-  {
-    value: getRandom(),
-    label: "test 4 really long label",
-    color: "#439090",
-  },
-];
-
 type Props = ChartProps;
 
 const NAME_COMPONENT = "stackable-container";
 
 /**
- * Sort the data from smallest to biggest
+ * Sorts collection
  * @param data
- * @returns sorted BarProps[]
+ * @param sortedBy
+ * @returns sorted collection from largest or smallest
  */
 const sortDataSmallBig = (
   data: BarProps[],
@@ -53,6 +29,12 @@ const sortDataSmallBig = (
     sortedBy === "largest" ? a.value - b.value : b.value - a.value
   );
 
+/**
+ * Rounding helper
+ * @param value
+ * @param method
+ * @returns value rounded
+ */
 const roundPortion = (value: number, method: Rounding): number => {
   if (method === "up") {
     return Math.ceil(value);
@@ -73,12 +55,15 @@ const calcPortionsForData = (
   method: Rounding,
   sortedBy: SortProperty = "none"
 ): BarProps[] => {
+  // CB - actual percentage
   const calcPortion = (value: number, total: number, method: Rounding) => {
     const portion = (value / total) * 100;
     return roundPortion(portion, method);
   };
+  // CB - percentage for rendering visual size
   const calcRenderPortion = (value: number, largest: number) =>
     (value / largest) * 100;
+  // CB - Identifies largest value in collection
   const findLargest = (collection: BarProps[]) => {
     let temp = 0;
     let largest = collection[0];
@@ -109,11 +94,10 @@ const calcPortionsForData = (
 };
 
 // TODO: Hover tooltip for linear
-// TODO: Update function documenation and reorg code
 // TODO: Optimize CSS file
-// TODO: Tests
+// TODO: Integration tests
 const StackableBarChart: React.FC<Props> = ({
-  data = mockData,
+  data = [],
   sortLinear = "largest",
   mode = "stacked",
   rounding = "nearest",

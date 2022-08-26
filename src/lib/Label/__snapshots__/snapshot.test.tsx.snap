@@ -1,0 +1,9 @@
+// Vitest Snapshot v1
+
+exports[`Label > Label component renders correctly 1`] = `
+<h3
+  data-testid="stackable-bar-label"
+>
+  Test
+</h3>
+`;

@@ -1,0 +1,39 @@
+// Vitest Snapshot v1
+
+exports[`Bar > Bar component renders correctly 1`] = `
+<div
+  className="stackable-bar stacked "
+  data-testid="stackable-bar"
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+  style={
+    {
+      "background": undefined,
+      "transition": "width .2s ease-out",
+      "width": "0%",
+    }
+  }
+>
+  <div
+    className="bar-value"
+    style={
+      {
+        "background": undefined,
+        "transition": "width .2s ease-out",
+        "width": "0%",
+      }
+    }
+  >
+    <span
+      className="bar-value-text"
+      style={
+        {
+          "color": undefined,
+        }
+      }
+    >
+      1
+    </span>
+  </div>
+</div>
+`;

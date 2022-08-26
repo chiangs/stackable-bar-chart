@@ -1,3 +1,4 @@
+import * as React from "react";
 import { BarData } from "../__types";
 
 type Props = BarData;

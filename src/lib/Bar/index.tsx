@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import type { BarData, BarProps } from "../__types";
 
 type Props = BarProps;
@@ -20,6 +20,7 @@ const Bar: React.FC<Props> = ({
   const displayValue = showPercentage ? `${portion}%` : `${value}`;
   const valueWidth = mode === "stacked" ? renderPortion : portion;
   const tooltip = showTooltip ? "tooltip" : "";
+  const transitionAnimation = "width .2s ease-out";
 
   // Default internal width
   const [barWidth, setBarWidth] = useState(0);
@@ -28,25 +29,33 @@ const Bar: React.FC<Props> = ({
     setBarWidth(valueWidth);
   }, []);
 
+  // Bar style
   const width = `${barWidth}%`;
   const styleBar = {
     width,
     background: color,
   };
+
+  // Animation style
   const animatedStyle = {
     ...styleBar,
-    transition: "width .2s ease-out",
+    transition: transitionAnimation,
   };
+
+  // Set bar style
   const styleContainer = mode === "stacked" ? animatedStyle : styleBar;
+
+  // Set bar text styles
   const styleText = {
     color: background,
   };
-  // Create bar content
+  // Create bar content: Stacked
   let barContent = (
     <span className="bar-value-text" style={styleText}>
       {value}
     </span>
   );
+
   if (mode === "linear") {
     barContent = (
       <div className="stacked-content" style={styleText}>

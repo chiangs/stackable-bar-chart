@@ -1,7 +1,7 @@
 {
   "name": "stackable-bar-chart",
   "packageManager": "yarn@3.2.2",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "stackable bar chart",
   "author": "chiangs",
   "license": "MIT",
@@ -66,6 +66,7 @@
     "@testing-library/dom": "^8.16.1",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.4.2",
+    "@types/react-test-renderer": "^18.0.0",
     "@vitejs/plugin-react": "^2.0.0",
     "@vitest/ui": "^0.21.0",
     "c8": "^7.12.0",

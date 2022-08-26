@@ -1,0 +1,15 @@
+// Vitest Snapshot v1
+
+exports[`StackableBarChart > StackableBarChart component renders correctly 1`] = `
+<figure
+  className="stackable-container stacked title-bottom"
+  data-testid="stackable-container"
+>
+  <div
+    className="chart-container"
+  />
+  <div
+    className="chart-title"
+  />
+</figure>
+`;

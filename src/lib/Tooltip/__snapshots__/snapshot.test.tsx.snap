@@ -1,0 +1,21 @@
+// Vitest Snapshot v1
+
+exports[`Tooltip > Tooltip component renders correctly 1`] = `
+<div
+  className="tooltip-container"
+  style={
+    {
+      "background": undefined,
+      "color": undefined,
+    }
+  }
+>
+  <span>
+    1
+     
+    test
+     - 
+    undefined%
+  </span>
+</div>
+`;
