@@ -15,7 +15,7 @@ const Bar: React.FC<Props> = ({
   mode = "stacked",
   showPercentage = false,
   showTooltip = false,
-  revealTooltipHandler = (data: BarData | null) => data,
+  revealTooltipHandler = (data: any | null) => data,
 }) => {
   const displayValue = showPercentage ? `${portion}%` : `${value}`;
   const valueWidth = mode === "stacked" ? renderPortion : portion;
@@ -77,13 +77,14 @@ const Bar: React.FC<Props> = ({
       className={`${NAME_COMPONENT} ${mode} ${tooltip}`}
       style={styleContainer}
       data-testid={NAME_COMPONENT}
-      onMouseOver={() =>
+      onMouseOver={(e) =>
         revealTooltipHandler({
           label,
           value,
           color: background,
           background: color,
           percentage: portion,
+          e,
         })
       }
       onMouseOut={() => revealTooltipHandler(null)}

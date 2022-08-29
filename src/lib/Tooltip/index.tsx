@@ -11,8 +11,16 @@ const Tooltip: React.FC<Props> = ({
   color,
   background,
   percentage,
+  e,
 }) => {
-  const style = { background, color };
+  const left = e ? e.clientX + 15 : 0;
+  const top = e?.clientY || 0;
+  const style = {
+    background,
+    color,
+    left,
+    top,
+  };
   return (
     <div className={NAME_COMPONENT} style={style}>
       <span>

@@ -93,13 +93,13 @@ const calcPortionsForData = (
   return updated;
 };
 
-// TODO: Hover tooltip for linear
 // TODO: Optimize CSS file
 // TODO: Integration tests
+// TODO: Click event
 const StackableBarChart: React.FC<Props> = ({
   data = [],
   sortLinear = "largest",
-  mode = "stacked",
+  mode = "linear",
   rounding = "nearest",
   colorBackground = "#fff",
   showPercentage = false,
@@ -110,7 +110,7 @@ const StackableBarChart: React.FC<Props> = ({
   const [tooltipContent, setTooltipContent] = useState<BarData | null>();
 
   // Events
-  const onHoverBar = (data: BarData | null) => setTooltipContent(data);
+  const onHoverBar = (data: any | null) => setTooltipContent(data);
 
   // Get background of app for knockout bar value text
   const background =
@@ -134,7 +134,13 @@ const StackableBarChart: React.FC<Props> = ({
           <Label>{d.label}</Label>
         </div>
         <div className="data-bar">
-          <Bar {...d} background={background} mode={mode} />
+          <Bar
+            {...d}
+            background={background}
+            mode={mode}
+            showTooltip={showTooltip}
+            revealTooltipHandler={onHoverBar}
+          />
         </div>
       </React.Fragment>
     ));
@@ -168,6 +174,7 @@ const StackableBarChart: React.FC<Props> = ({
     chart = (
       <>
         <div className="chart-container">{bars}</div>
+        {tooltip}
         <div className="chart-title">{title}</div>
       </>
     );

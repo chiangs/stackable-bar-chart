@@ -12,6 +12,7 @@ export interface BarData {
   percentage?: number;
   color?: string;
   background?: string;
+  e?: MouseEvent;
 }
 
 export interface BarProps {
