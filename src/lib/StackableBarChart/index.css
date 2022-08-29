@@ -66,7 +66,12 @@
   /* justify-content: flex-end; */
 }
 
-.stacked.title-top {
+.stacked.title-bottom {
+  flex-direction: column;
+}
+
+.stacked.title-top,
+.stacked.title-default {
   flex-direction: column-reverse;
 }
 
@@ -76,6 +81,15 @@
 
 .stacked.title-right {
   flex-direction: row;
+}
+
+.title-default .chart-title {
+  text-align: left;
+  margin: 0;
+}
+
+.title-default .chart-title h2 {
+  margin-top: 0;
 }
 
 .stacked.title-left .chart-title,

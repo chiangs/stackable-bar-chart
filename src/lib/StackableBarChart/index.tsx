@@ -95,6 +95,8 @@ const calcPortionsForData = (
 
 // TODO: Optimize CSS file
 // TODO: Integration tests
+// TODO: tabbing and show tooltip, help screen reader
+// TODO: Linear title positioning
 // TODO: Click event
 const StackableBarChart: React.FC<Props> = ({
   data = [],
@@ -104,7 +106,7 @@ const StackableBarChart: React.FC<Props> = ({
   colorBackground = "#fff",
   showPercentage = false,
   showTooltip = true,
-  titlePosition = "bottom",
+  titlePosition = "default ",
   children,
 }) => {
   const [tooltipContent, setTooltipContent] = useState<BarData | null>();

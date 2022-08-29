@@ -2,7 +2,13 @@ export type Mode = "stacked" | "linear";
 
 export type Rounding = "nearest" | "up" | "down";
 
-export type Position = "none" | "top" | "bottom" | "left" | "right";
+export type Position =
+  | "none"
+  | "top"
+  | "bottom"
+  | "left"
+  | "right"
+  | "default ";
 
 export type SortProperty = "none" | "largest" | "smallest";
 
