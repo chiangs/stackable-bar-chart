@@ -97,7 +97,6 @@ const calcPortionsForData = (
 // TODO: Integration tests
 // TODO: tabbing and show tooltip, help screen reader
 // TODO: Linear title positioning
-// TODO: Click event
 const StackableBarChart: React.FC<Props> = ({
   data = [],
   sortLinear = "largest",
@@ -108,11 +107,13 @@ const StackableBarChart: React.FC<Props> = ({
   showTooltip = true,
   titlePosition = "default ",
   children,
+  clickHandler = () => null,
 }) => {
   const [tooltipContent, setTooltipContent] = useState<BarData | null>();
 
   // Events
   const onHoverBar = (data: any | null) => setTooltipContent(data);
+  const onClickBar = (data: Partial<BarData>) => clickHandler(data);
 
   // Get background of app for knockout bar value text
   const background =
@@ -142,6 +143,7 @@ const StackableBarChart: React.FC<Props> = ({
             mode={mode}
             showTooltip={showTooltip}
             revealTooltipHandler={onHoverBar}
+            barClickHandler={onClickBar}
           />
         </div>
       </React.Fragment>
@@ -155,6 +157,7 @@ const StackableBarChart: React.FC<Props> = ({
         showPercentage={showPercentage}
         showTooltip={showTooltip}
         revealTooltipHandler={onHoverBar}
+        barClickHandler={onClickBar}
       />
     ));
   }

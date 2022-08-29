@@ -18,7 +18,7 @@ export interface BarData {
   percentage?: number;
   color?: string;
   background?: string;
-  e?: MouseEvent;
+  e?: React.MouseEvent<HTMLDivElement, MouseEvent>;
 }
 
 export interface BarProps {
@@ -32,6 +32,7 @@ export interface BarProps {
   showPercentage?: boolean;
   showTooltip?: boolean;
   revealTooltipHandler?: (data: BarData | null) => void;
+  barClickHandler?: (d: Partial<BarData>) => Partial<BarData> | null;
 }
 
 export interface ChartProps {
@@ -44,4 +45,5 @@ export interface ChartProps {
   showPercentage?: boolean;
   titlePosition?: Position;
   children?: any;
+  clickHandler?: (d: Partial<BarData>) => any | null;
 }

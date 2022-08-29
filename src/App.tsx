@@ -1,4 +1,4 @@
-import type { BarProps } from "./lib/__types";
+import type { BarData, BarProps } from "./lib/__types";
 import StackableBarChart from "./lib/StackableBarChart";
 
 const getRandom = () => Math.floor(Math.random() * (1000 - 0) + 0);
@@ -33,9 +33,15 @@ const mockData: BarProps[] = [
   },
 ];
 
+const onBarClick = (d: Partial<BarData>) => console.log(d);
+
 const App = () => (
   <article style={style}>
-    <StackableBarChart colorBackground={"#08111B"} data={mockData}>
+    <StackableBarChart
+      colorBackground={"#08111B"}
+      data={mockData}
+      clickHandler={onBarClick}
+    >
       {title}
     </StackableBarChart>
   </article>

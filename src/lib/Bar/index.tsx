@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import type { BarData, BarProps } from "../__types";
+import type { BarProps } from "../__types";
 
 type Props = BarProps;
 
@@ -16,11 +16,13 @@ const Bar: React.FC<Props> = ({
   showPercentage = false,
   showTooltip = false,
   revealTooltipHandler = (data: any | null) => data,
+  barClickHandler = () => null,
 }) => {
   const displayValue = showPercentage ? `${portion}%` : `${value}`;
   const valueWidth = mode === "stacked" ? renderPortion : portion;
   const tooltip = showTooltip ? "tooltip" : "";
   const transitionAnimation = "width .2s ease-out";
+  const percentage = portion;
 
   // Default internal width
   const [barWidth, setBarWidth] = useState(0);
@@ -83,11 +85,12 @@ const Bar: React.FC<Props> = ({
           value,
           color: background,
           background: color,
-          percentage: portion,
+          percentage,
           e,
         })
       }
       onMouseOut={() => revealTooltipHandler(null)}
+      onClick={() => barClickHandler({ value, label, percentage })}
     >
       <div className="bar-value" style={styleContainer}>
         {barContent}
