@@ -95,12 +95,11 @@ const calcPortionsForData = (
 
 // TODO: Optimize CSS file
 // TODO: Integration tests
-// TODO: tabbing and show tooltip, help screen reader
 // TODO: Linear title positioning
 const StackableBarChart: React.FC<Props> = ({
   data = [],
   sortLinear = "largest",
-  mode = "linear",
+  mode = "stacked",
   rounding = "nearest",
   colorBackground = "#fff",
   showPercentage = false,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import type { BarProps } from "../__types";
+import type { BarData, BarProps } from "../__types";
 
 type Props = BarProps;
 
@@ -23,6 +23,20 @@ const Bar: React.FC<Props> = ({
   const tooltip = showTooltip ? "tooltip" : "";
   const transitionAnimation = "width .2s ease-out";
   const percentage = portion;
+
+  // Events
+  const onKey = (k: React.KeyboardEvent<HTMLDivElement>) => {
+    if (k.key === "Tab") {
+      revealTooltipHandler({
+        label,
+        value,
+        color: background,
+        background: color,
+        percentage,
+        k,
+      });
+    }
+  };
 
   // Default internal width
   const [barWidth, setBarWidth] = useState(0);
@@ -74,13 +88,31 @@ const Bar: React.FC<Props> = ({
     );
   }
 
+  const onRevealTooltip = ({
+    label,
+    value,
+    color,
+    background,
+    percentage,
+    e,
+    k,
+  }: BarData) =>
+    revealTooltipHandler({
+      label,
+      value,
+      color: background,
+      background: color,
+      percentage,
+      e,
+    });
+
   return (
     <div
       className={`${NAME_COMPONENT} ${mode} ${tooltip}`}
       style={styleContainer}
       data-testid={NAME_COMPONENT}
       onMouseOver={(e) =>
-        revealTooltipHandler({
+        onRevealTooltip({
           label,
           value,
           color: background,
@@ -91,6 +123,8 @@ const Bar: React.FC<Props> = ({
       }
       onMouseOut={() => revealTooltipHandler(null)}
       onClick={() => barClickHandler({ value, label, percentage })}
+      onKeyUp={(e) => onKey(e)}
+      tabIndex={0}
     >
       <div className="bar-value" style={styleContainer}>
         {barContent}

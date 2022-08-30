@@ -19,6 +19,7 @@ export interface BarData {
   color?: string;
   background?: string;
   e?: React.MouseEvent<HTMLDivElement, MouseEvent>;
+  k?: React.KeyboardEvent<HTMLDivElement>;
 }
 
 export interface BarProps {
