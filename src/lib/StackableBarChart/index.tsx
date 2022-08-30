@@ -93,19 +93,18 @@ const calcPortionsForData = (
   return updated;
 };
 
-// TODO: Optimize CSS file
 // TODO: Integration tests
 const StackableBarChart: React.FC<Props> = ({
   data = [],
-  sortLinear = "none",
-  mode = "linear",
-  rounding = "nearest",
-  colorBackground = "#fff",
+  mode = "stacked",
+  sortBy = "none",
+  roundTo = "nearest",
+  titlePosition = "default",
+  colorBackground = "transparent",
   showPercentage = false,
   showTooltip = true,
-  titlePosition = "default",
-  children,
   clickHandler = () => null,
+  children,
 }) => {
   const [tooltipContent, setTooltipContent] = useState<BarData | null>();
 
@@ -119,12 +118,23 @@ const StackableBarChart: React.FC<Props> = ({
     colorBackground === "transparent" ? "#fff" : colorBackground;
 
   // Process data collection
-  const sortedData =
-    sortLinear === "none" ? data : sortDataSmallBig(data, sortLinear);
+  const sortedData = sortBy === "none" ? data : sortDataSmallBig(data, sortBy);
   const sortedDataWithPortion = calcPortionsForData(
     sortedData,
-    rounding,
-    sortLinear
+    roundTo,
+    sortBy
+  );
+
+  // Title
+  let title = null;
+  if (titlePosition !== "none") {
+    title = children;
+  }
+  const chartTitle = <figcaption className="chart-title">{title}</figcaption>;
+
+  // Tooltip
+  const tooltip = showTooltip && tooltipContent && (
+    <Tooltip {...tooltipContent} />
   );
 
   // Bars
@@ -162,35 +172,16 @@ const StackableBarChart: React.FC<Props> = ({
       </React.Fragment>
     ));
   }
-
-  // Title
-  let title = null;
-  if (titlePosition !== "none") {
-    title = children;
-  }
-
-  // Tooltip
-  const tooltip = showTooltip && tooltipContent && (
-    <Tooltip {...tooltipContent} />
-  );
-
-  // Title
-  const chartTitle = <figcaption className="chart-title">{title}</figcaption>;
+  const barsContainer =
+    mode === "stacked" ? <>{bars}</> : <div className="chart-bars">{bars}</div>;
 
   // ChartContents
-  const contents =
-    mode === "stacked" ? (
-      <>
-        {bars}
-        {tooltip}
-      </>
-    ) : (
-      <>
-        {" "}
-        <div className="chart-bars">{bars}</div>
-        {tooltip}
-      </>
-    );
+  const contents = (
+    <>
+      {barsContainer}
+      {tooltip}
+    </>
+  );
 
   //  Chart
   const chart = <ChartContainer>{contents}</ChartContainer>;

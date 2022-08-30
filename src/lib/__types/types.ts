@@ -13,23 +13,23 @@ export type Position =
 export type SortProperty = "none" | "largest" | "smallest";
 
 export interface BarData {
+  color?: string;
+  background?: string;
   label: string;
   value: number;
   percentage?: number;
-  color?: string;
-  background?: string;
   e?: React.MouseEvent<HTMLDivElement, MouseEvent>;
   k?: React.KeyboardEvent<HTMLDivElement>;
 }
 
 export interface BarProps {
-  value: number;
   label: string;
-  portion?: number;
-  renderPortion?: number;
   color?: string;
   background?: string;
   mode?: Mode;
+  value: number;
+  portion?: number;
+  renderPortion?: number;
   showPercentage?: boolean;
   showTooltip?: boolean;
   revealTooltipHandler?: (data: BarData | null) => void;
@@ -39,12 +39,12 @@ export interface BarProps {
 export interface ChartProps {
   data?: BarProps[];
   mode?: Mode;
-  rounding?: Rounding;
-  sortLinear?: SortProperty;
-  showTooltip?: boolean;
+  roundTo?: Rounding;
+  sortBy?: SortProperty;
   colorBackground?: string;
-  showPercentage?: boolean;
   titlePosition?: Position;
-  children?: any;
+  showTooltip?: boolean;
+  showPercentage?: boolean;
   clickHandler?: (d: Partial<BarData>) => any | null;
+  children?: any;
 }

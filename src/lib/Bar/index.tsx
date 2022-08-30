@@ -6,13 +6,13 @@ type Props = BarProps;
 const NAME_COMPONENT = "stackable-bar";
 
 const Bar: React.FC<Props> = ({
-  value = 0,
-  label = "",
   color = undefined,
   background = undefined,
+  mode = "stacked",
+  label = "",
+  value = 0,
   portion = 0,
   renderPortion = 0,
-  mode = "stacked",
   showPercentage = false,
   showTooltip = false,
   revealTooltipHandler = (data: any | null) => data,
