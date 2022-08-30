@@ -23,10 +23,10 @@ const NAME_COMPONENT = "stackable-container";
  */
 const sortDataSmallBig = (
   data: BarProps[],
-  sortedBy: SortProperty = "largest"
+  sortedBy: SortProperty = "none"
 ): BarProps[] =>
   data.sort((a, b) =>
-    sortedBy === "largest" ? a.value - b.value : b.value - a.value
+    sortedBy === "smallest" ? a.value - b.value : b.value - a.value
   );
 
 /**
@@ -79,7 +79,7 @@ const calcPortionsForData = (
   const largest =
     sortedBy === "none"
       ? findLargest(data)
-      : sortedBy === "largest"
+      : sortedBy === "smallest"
       ? data[data.length - 1]
       : data[0];
   const sum = data.reduce((t, o) => {
@@ -95,16 +95,15 @@ const calcPortionsForData = (
 
 // TODO: Optimize CSS file
 // TODO: Integration tests
-// TODO: Linear title positioning
 const StackableBarChart: React.FC<Props> = ({
   data = [],
-  sortLinear = "largest",
-  mode = "stacked",
+  sortLinear = "none",
+  mode = "linear",
   rounding = "nearest",
   colorBackground = "#fff",
   showPercentage = false,
   showTooltip = true,
-  titlePosition = "default ",
+  titlePosition = "default",
   children,
   clickHandler = () => null,
 }) => {
@@ -183,7 +182,6 @@ const StackableBarChart: React.FC<Props> = ({
     mode === "stacked" ? (
       <>
         {bars}
-        {chartTitle}
         {tooltip}
       </>
     ) : (
@@ -191,7 +189,6 @@ const StackableBarChart: React.FC<Props> = ({
         {" "}
         <div className="chart-bars">{bars}</div>
         {tooltip}
-        {chartTitle}
       </>
     );
 
@@ -205,6 +202,7 @@ const StackableBarChart: React.FC<Props> = ({
       data-testid={NAME_COMPONENT}
     >
       {chart}
+      {chartTitle}
     </figure>
   );
 };

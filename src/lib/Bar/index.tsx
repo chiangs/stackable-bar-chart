@@ -74,12 +74,16 @@ const Bar: React.FC<Props> = ({
 
   if (mode === "linear") {
     barContent = (
-      <div className="stacked-content" style={styleText}>
+      <div
+        className="stacked-content"
+        style={styleText}
+        aria-labelledby={label}
+      >
         <div className="bar-value-text">
           <h3>{displayValue}</h3>
         </div>
         <div className="bar-label-text">
-          <p>
+          <p id={label}>
             {label}
             {showPercentage ? <span>&nbsp;-&nbsp;{value}</span> : null}
           </p>

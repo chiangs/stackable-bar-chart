@@ -1,9 +1,3 @@
-/* Temp styles */
-
-/* #region Utils */
-
-/* #endregion Utils */
-
 /* #region Container */
 .stackable-container {
   --font-size: clamp(1rem, 5vw, 60px);
@@ -17,12 +11,59 @@
   box-sizing: border-box;
 }
 
-.chart-title {
-  margin-top: 20px;
-  width: 100%;
-  text-align: center;
+.title-top,
+.title-default {
+  flex-direction: column-reverse;
 }
 
+.title-bottom {
+  flex-direction: column;
+}
+
+.title-left {
+  flex-direction: row-reverse;
+}
+
+.title-default .chart-title {
+  justify-content: flex-start;
+}
+
+.title-top .chart-title,
+.title-default .chart-title {
+  margin-bottom: 25px;
+}
+
+.title-bottom .chart-title {
+  margin-top: 25px;
+}
+
+.title-left .chart-title,
+.title-right .chart-title {
+  align-items: center;
+  margin: 25px;
+}
+/* #endregion Container */
+
+/* #region Title */
+.chart-title {
+  color: var(--color-fallback);
+  width: 100%;
+  flex: 0;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+}
+
+.chart-title h2 {
+  margin: 0;
+}
+
+.chart-container {
+  flex: 1;
+}
+/* #endregion Title */
+
+/* #region Data Labels & Values */
 .data-label {
   color: var(--color-fallback);
   white-space: nowrap;
@@ -36,11 +77,26 @@
   font-size: var(--font-size);
 }
 
+.bar-value {
+  width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 5px;
+  font-size: var(--font-size);
+  font-weight: bold;
+  background: var(--color-fallback);
+}
+
+.data-label,
+.bar-value-text {
+  user-select: all;
+}
+/* #endregion Data Labels & Values  */
+
 /* #region stacked */
 .stackable-container.stacked {
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
 }
 
 .stackable-container.stacked .chart-container {
@@ -65,42 +121,6 @@
   /* justify-content: flex-end; */
 }
 
-.stacked.title-bottom {
-  flex-direction: column;
-}
-
-.stacked.title-top,
-.stacked.title-default {
-  flex-direction: column-reverse;
-}
-
-.stacked.title-left {
-  flex-direction: row-reverse;
-}
-
-.stacked.title-right {
-  flex-direction: row;
-}
-
-.title-default .chart-title {
-  color: var(--color-fallback);
-  text-align: left;
-  margin: 0;
-}
-
-.title-default .chart-title h2 {
-  margin-top: 0;
-}
-
-.stacked.title-left .chart-title,
-.stacked.title-right .chart-title {
-  width: initial;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-}
-
 .stackable-bar.stacked,
 .stacked .bar-value {
   border-radius: var(--radius-bar);
@@ -110,7 +130,6 @@
 /* #region linear */
 .stackable-container.linear {
   display: flex;
-  flex-direction: column;
 }
 
 .stackable-container.linear .chart-bars {
@@ -124,7 +143,6 @@
   position: relative;
 }
 /* #endregion linear */
-/* #endregion Container */
 
 /* #region Bar */
 .stackable-bar {
@@ -146,33 +164,7 @@
   z-index: 100;
 }
 
-/* #region tooltip */
-.tooltip-container {
-  z-index: 100;
-  margin: 5px 0 0 0;
-  padding: 5px;
-  background-color: white;
-  border-radius: var(--radius-tooltip);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.65), 0px 4px 8px rgba(0, 0, 0, 0.75);
-}
-
-/* #endregion tooltip */
-.bar-value {
-  width: 0;
-  height: 100%;
-  margin: 0;
-  padding: 5px;
-  font-size: var(--font-size);
-  font-weight: bold;
-  background: var(--color-fallback);
-}
-
-.data-label,
-.bar-value-text {
-  user-select: all;
-}
-
-.stacked-content {
+.linear .stacked-content {
   width: 100%;
   height: 100%;
   display: flex;
@@ -181,16 +173,27 @@
   align-items: stretch;
 }
 
-.stacked-content * {
+.linear .stacked-content * {
   margin: 0;
 }
 
-.stacked-content .bar-value-text {
+.linear .stacked-content .bar-value-text {
   font-size: clamp(1.5rem, 3vw, 60px);
 }
 
-.bar-label-text {
+.linear .bar-label-text {
   font-size: clamp(1.3rem, 1.5vw, 60px);
   white-space: nowrap;
 }
 /* #endregion Bar */
+
+/* #region Tooltip */
+.tooltip-container {
+  z-index: 100;
+  margin: 5px 0 0 0;
+  padding: 5px;
+  background-color: white;
+  border-radius: var(--radius-tooltip);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.65), 0px 4px 8px rgba(0, 0, 0, 0.75);
+}
+/* #endregion Tooltip */
