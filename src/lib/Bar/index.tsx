@@ -95,7 +95,6 @@ const Bar: React.FC<Props> = ({
     background,
     percentage,
     e,
-    k,
   }: BarData) =>
     revealTooltipHandler({
       label,

@@ -10,7 +10,7 @@ import type {
 import Bar from "../Bar";
 import Label from "../Label";
 import Tooltip from "../Tooltip";
-
+import ChartContainer from "../ChartContainer";
 type Props = ChartProps;
 
 const NAME_COMPONENT = "stackable-container";
@@ -113,6 +113,7 @@ const StackableBarChart: React.FC<Props> = ({
   // Events
   const onHoverBar = (data: any | null) => setTooltipContent(data);
   const onClickBar = (data: Partial<BarData>) => clickHandler(data);
+  const onBlurFigure = () => setTooltipContent(null);
 
   // Get background of app for knockout bar value text
   const background =
@@ -149,15 +150,17 @@ const StackableBarChart: React.FC<Props> = ({
     ));
   } else {
     bars = sortedDataWithPortion.map((d, i) => (
-      <Bar
-        {...d}
-        background={background}
-        mode={mode}
-        showPercentage={showPercentage}
-        showTooltip={showTooltip}
-        revealTooltipHandler={onHoverBar}
-        barClickHandler={onClickBar}
-      />
+      <React.Fragment key={`${d.label}${i}`}>
+        <Bar
+          {...d}
+          background={background}
+          mode={mode}
+          showPercentage={showPercentage}
+          showTooltip={showTooltip}
+          revealTooltipHandler={onHoverBar}
+          barClickHandler={onClickBar}
+        />
+      </React.Fragment>
     ));
   }
 
@@ -172,32 +175,33 @@ const StackableBarChart: React.FC<Props> = ({
     <Tooltip {...tooltipContent} />
   );
 
-  // Combined chart elements
-  let chart;
-  if (mode === "stacked") {
-    chart = (
+  // Title
+  const chartTitle = <figcaption className="chart-title">{title}</figcaption>;
+
+  // ChartContents
+  const contents =
+    mode === "stacked" ? (
       <>
-        <div className="chart-container">{bars}</div>
+        {bars}
+        {chartTitle}
         {tooltip}
-        <div className="chart-title">{title}</div>
+      </>
+    ) : (
+      <>
+        {" "}
+        <div className="chart-bars">{bars}</div>
+        {tooltip}
+        {chartTitle}
       </>
     );
-  } else {
-    chart = (
-      <div className="chart-container">
-        <div className="chart-bars">
-          {bars}
-          {tooltip}
-        </div>
 
-        <div className="chart-title">{title}</div>
-      </div>
-    );
-  }
+  //  Chart
+  const chart = <ChartContainer>{contents}</ChartContainer>;
 
   return (
     <figure
       className={`${NAME_COMPONENT} ${mode} title-${titlePosition}`}
+      onBlur={onBlurFigure}
       data-testid={NAME_COMPONENT}
     >
       {chart}

@@ -15,11 +15,13 @@ const Tooltip: React.FC<Props> = ({
 }) => {
   const left = e ? e.clientX + 15 : 0;
   const top = e?.clientY || 0;
-  const style = {
+  const position = e ? "absolute" : "initial";
+  const style: React.CSSProperties = {
     background,
     color,
     left,
     top,
+    position,
   };
   return (
     <div className={NAME_COMPONENT} style={style}>

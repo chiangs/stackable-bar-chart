@@ -3,8 +3,6 @@ import StackableBarChart from "./lib/StackableBarChart";
 
 const getRandom = () => Math.floor(Math.random() * (1000 - 0) + 0);
 
-const title = <h2>Chart title</h2>;
-
 const style = {
   padding: "50px",
   background: "#08111B",
@@ -34,6 +32,8 @@ const mockData: BarProps[] = [
 ];
 
 const onBarClick = (d: Partial<BarData>) => console.log(d);
+
+const title = <h2>Chart title</h2>;
 
 const App = () => (
   <article style={style}>
