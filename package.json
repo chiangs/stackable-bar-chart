@@ -1,7 +1,7 @@
 {
   "name": "stackable-bar-chart",
   "packageManager": "yarn@3.2.2",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "stackable bar chart",
   "author": "chiangs",
   "license": "MIT",
