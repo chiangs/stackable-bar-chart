@@ -1,84 +1,83 @@
 {
-  "name": "stackable-bar-chart",
-  "packageManager": "yarn@3.2.2",
-  "version": "1.0.1",
-  "description": "stackable bar chart",
-  "author": "chiangs",
-  "license": "MIT",
-  "keywords": [
-    "bar",
-    "chart",
-    "pie"
-  ],
-  "homepage": "https://github.com/chiangs/stackable-bar-chart/blob/main/README.md",
-  "repository": "github:chiangs/stackable-bar-chart.git",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
-  "files": [
-    "dist",
-    "README.md"
-  ],
-  "main": "./dist/stackable-bar-chart.umd.js",
-  "module": "./dist/stackable-bar-chart.es.js",
-  "exports": {
-    ".": {
-      "import": "./dist/stackable-bar-chart.es.js",
-      "require": "./dist/stackable-bar-chart.umd.js"
-    }
-  },
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "test": "vitest run",
-    "watch": "vitest",
-    "coverage": "vitest --coverage",
-    "testui": "vitest --ui"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+    "name": "stackable-bar-chart",
+    "version": "1.0.1",
+    "description": "stackable bar chart",
+    "author": "chiangs",
+    "license": "MIT",
+    "keywords": [
+        "bar",
+        "chart",
+        "pie"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "node": true,
-      "es2020": true
+    "homepage": "https://github.com/chiangs/stackable-bar-chart/blob/main/README.md",
+    "repository": "github:chiangs/stackable-bar-chart.git",
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/"
     },
-    "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended"
+    "files": [
+        "dist",
+        "README.md"
     ],
-    "parserOptions": {
-      "sourceType": "module"
+    "main": "./dist/stackable-bar-chart.umd.js",
+    "module": "./dist/stackable-bar-chart.es.js",
+    "exports": {
+        ".": {
+            "import": "./dist/stackable-bar-chart.es.js",
+            "require": "./dist/stackable-bar-chart.umd.js"
+        }
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "test": "vitest run",
+        "watch": "vitest",
+        "coverage": "vitest --coverage",
+        "testui": "vitest --ui"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "node": true,
+            "es2020": true
+        },
+        "extends": [
+            "eslint:recommended",
+            "plugin:react/recommended"
+        ],
+        "parserOptions": {
+            "sourceType": "module"
+        }
+    },
+    "typings": "dist/src/index.d.ts",
+    "devDependencies": {
+        "@testing-library/dom": "^8.16.1",
+        "@testing-library/react": "^13.3.0",
+        "@testing-library/user-event": "^14.4.2",
+        "@types/react-test-renderer": "^18.0.0",
+        "@vitejs/plugin-react": "^2.0.0",
+        "@vitest/ui": "^0.21.0",
+        "c8": "^7.12.0",
+        "eslint": "^8.21.0",
+        "eslint-plugin-react": "^7.30.1",
+        "jsdom": "^20.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-test-renderer": "^18.2.0",
+        "typescript": "^4.7.4",
+        "vite": "^3.0.4",
+        "vite-plugin-dts": "^1.4.1",
+        "vitest": "^0.21.0"
     }
-  },
-  "typings": "dist/src/index.d.ts",
-  "devDependencies": {
-    "@testing-library/dom": "^8.16.1",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^14.4.2",
-    "@types/react-test-renderer": "^18.0.0",
-    "@vitejs/plugin-react": "^2.0.0",
-    "@vitest/ui": "^0.21.0",
-    "c8": "^7.12.0",
-    "eslint": "^8.21.0",
-    "eslint-plugin-react": "^7.30.1",
-    "jsdom": "^20.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-test-renderer": "^18.2.0",
-    "typescript": "^4.7.4",
-    "vite": "^3.0.4",
-    "vite-plugin-dts": "^1.4.1",
-    "vitest": "^0.21.0"
-  }
 }
