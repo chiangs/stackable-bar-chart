@@ -151,7 +151,6 @@
 
 .linear .stackable-bar {
   height: var(--height-stacked-bar);
-  position: relative;
 }
 /* #endregion linear */
 

@@ -15,7 +15,7 @@ const Tooltip: React.FC<Props> = ({
 }) => {
   const left = e ? e.clientX + 15 : 0;
   const top = e?.clientY || 0;
-  const position = e ? "absolute" : "initial";
+  const position = e ? "fixed" : "initial";
   const style: React.CSSProperties = {
     background,
     color,
