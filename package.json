@@ -32,7 +32,7 @@
     "build": "vite build",
     "test": "vitest run",
     "watch": "vitest",
-    "coverage": "vitest run --coverage",
+    "coverage": "vitest --coverage",
     "testui": "vitest --ui"
   },
   "browserslist": {

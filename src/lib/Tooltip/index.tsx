@@ -24,7 +24,7 @@ const Tooltip: React.FC<Props> = ({
     position,
   };
   return (
-    <div className={NAME_COMPONENT} style={style}>
+    <div className={NAME_COMPONENT} style={style} data-testid={NAME_COMPONENT}>
       <span>
         {value} {label} - {`${percentage}%`}
       </span>

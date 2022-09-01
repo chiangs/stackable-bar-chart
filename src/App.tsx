@@ -11,23 +11,23 @@ const style = {
 
 const mockData: BarProps[] = [
   {
-    value: getRandom(),
+    value: 10.6,
     label: "test 1",
     color: "#F7A355",
   },
   {
-    value: getRandom(),
+    value: 50,
     label: "test 2",
     color: "#4D93E5",
   },
   {
-    value: getRandom(),
-    label: "test 3 really",
+    value: 1000,
+    label: "test 3",
     color: "#37C6A8",
   },
   {
-    value: getRandom(),
-    label: "test 4 really long label",
+    value: -100,
+    label: "test 4 negative",
     color: "#439090",
   },
 ];
@@ -39,12 +39,14 @@ const title = <h2>Chart title</h2>;
 const App = () => (
   <article style={style}>
     <StackableBarChart
+      mode={"linear"}
       colorBackground={background}
       data={mockData}
       clickHandler={onBarClick}
     >
       {title}
     </StackableBarChart>
+    {/* <StackableBarChart>default</StackableBarChart> */}
   </article>
 );
 

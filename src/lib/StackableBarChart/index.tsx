@@ -58,7 +58,8 @@ const calcPortionsForData = (
   // CB - actual percentage
   const calcPortion = (value: number, total: number, method: Rounding) => {
     const portion = (value / total) * 100;
-    return roundPortion(portion, method);
+    const rounded = roundPortion(portion, method);
+    return rounded;
   };
   // CB - percentage for rendering visual size
   const calcRenderPortion = (value: number, largest: number) =>
@@ -93,7 +94,6 @@ const calcPortionsForData = (
   return updated;
 };
 
-// TODO: Integration tests
 const StackableBarChart: React.FC<Props> = ({
   data = [],
   mode = "stacked",
@@ -101,7 +101,7 @@ const StackableBarChart: React.FC<Props> = ({
   roundTo = "nearest",
   titlePosition = "default",
   colorBackground = "transparent",
-  showPercentage = false,
+  showPercentage = true,
   showTooltip = true,
   clickHandler = () => null,
   children,
@@ -130,7 +130,11 @@ const StackableBarChart: React.FC<Props> = ({
   if (titlePosition !== "none") {
     title = children;
   }
-  const chartTitle = <figcaption className="chart-title">{title}</figcaption>;
+  const chartTitle = (
+    <figcaption className="chart-title" data-testid="chart-title">
+      {title}
+    </figcaption>
+  );
 
   // Tooltip
   const tooltip = showTooltip && tooltipContent && (

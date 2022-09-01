@@ -3,10 +3,14 @@
 exports[`Tooltip > Tooltip component renders correctly 1`] = `
 <div
   className="tooltip-container"
+  data-testid="tooltip-container"
   style={
     {
       "background": undefined,
       "color": undefined,
+      "left": 0,
+      "position": "initial",
+      "top": 0,
     }
   }
 >

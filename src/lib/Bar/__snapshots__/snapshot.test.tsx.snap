@@ -4,6 +4,8 @@ exports[`Bar > Bar component renders correctly 1`] = `
 <div
   className="stackable-bar stacked "
   data-testid="stackable-bar"
+  onClick={[Function]}
+  onKeyUp={[Function]}
   onMouseOut={[Function]}
   onMouseOver={[Function]}
   style={
@@ -13,6 +15,7 @@ exports[`Bar > Bar component renders correctly 1`] = `
       "width": "0%",
     }
   }
+  tabIndex={0}
 >
   <div
     className="bar-value"
