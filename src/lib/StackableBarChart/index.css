@@ -1,203 +1,203 @@
 /* #region Container */
 .stackable-container {
-  --font-size: clamp(1rem, 5vw, 60px);
-  --font-size-value-linear: clamp(1.5rem, 3vw, 60px);
-  --font-size-label-linear: clamp(1.3rem, 1.5vw, 60px);
-  --margin-title: 25px;
-  --padding: 5px;
-  --margin-tooltip: var(--padding) 0 0 0;
-  --padding-tooltip: var(--padding);
-  --shadow-tooltip: 0px 1px 2px rgba(0, 0, 0, 0.65),
-    0px 4px 8px rgba(0, 0, 0, 0.75);
-  --width-min-chart-container: 350px;
-  --height-stacked-bar: 125px;
-  --gap: 20px;
-  --radius: 15px;
-  --radius-tooltip: 2px;
-  --radius-bar: var(--radius) 0 var(--radius) 0;
-  --color-fallback: cadetblue;
-  --top: 100;
+    --font-size: clamp(1rem, 5vw, 60px);
+    --font-size-value-linear: clamp(1.5rem, 3vw, 60px);
+    --font-size-label-linear: clamp(1.3rem, 1.5vw, 60px);
+    --margin-title: 25px;
+    --padding: 5px;
+    --margin-tooltip: var(--padding) 0 0 0;
+    --padding-tooltip: var(--padding);
+    --shadow-tooltip: 0px 1px 2px rgba(0, 0, 0, 0.65),
+        0px 4px 8px rgba(0, 0, 0, 0.75);
+    --width-min-chart-container: 350px;
+    --height-stacked-bar: 125px;
+    --gap: 20px;
+    --radius: 15px;
+    --radius-tooltip: 2px;
+    --radius-bar: var(--radius) 0 var(--radius) 0;
+    --color-fallback: cadetblue;
+    --top: 100;
 }
 
 .stackable-container * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .title-top,
 .title-default {
-  flex-direction: column-reverse;
+    flex-direction: column-reverse;
 }
 
 .title-bottom {
-  flex-direction: column;
+    flex-direction: column;
 }
 
 .title-left {
-  flex-direction: row-reverse;
+    flex-direction: row-reverse;
 }
 
 .title-default .chart-title {
-  justify-content: flex-start;
+    justify-content: flex-start;
 }
 
 .title-top .chart-title,
 .title-default .chart-title {
-  margin-bottom: var(--margin-title);
+    margin-bottom: var(--margin-title);
 }
 
 .title-bottom .chart-title {
-  margin-top: var(--margin-title);
+    margin-top: var(--margin-title);
 }
 
 .title-left .chart-title,
 .title-right .chart-title {
-  align-items: center;
-  margin: var(--margin-title);
+    align-items: center;
+    margin: var(--margin-title);
 }
 /* #endregion Container */
 
 /* #region Title */
 .chart-title {
-  color: var(--color-fallback);
-  width: 100%;
-  flex: 0;
-  align-self: stretch;
-  display: flex;
-  justify-content: center;
+    color: var(--color-fallback);
+    width: 100%;
+    flex: 0;
+    align-self: stretch;
+    display: flex;
+    justify-content: center;
 }
 
 .chart-title h2 {
-  margin: 0;
+    margin: 0;
 }
 
 .chart-container {
-  flex: 1;
+    flex: 1;
 }
 /* #endregion Title */
 
 /* #region Data Labels & Values */
 .data-label {
-  color: var(--color-fallback);
-  white-space: nowrap;
-  text-align: right;
+    color: var(--color-fallback);
+    white-space: nowrap;
+    text-align: right;
 }
 
 .data-label h3,
 .bar-value {
-  font-size: var(--font-size);
-  padding: 0;
-  margin: 0;
+    font-size: var(--font-size);
+    padding: 0;
+    margin: 0;
 }
 
 .bar-value {
-  width: 0;
-  height: 100%;
-  margin: 0;
-  padding: var(--padding);
-  font-size: var(--font-size);
-  font-weight: bold;
-  background: var(--color-fallback);
+    width: 0;
+    height: 100%;
+    margin: 0;
+    padding: var(--padding);
+    font-size: var(--font-size);
+    font-weight: bold;
+    background: var(--color-fallback);
 }
 
 .data-label,
 .bar-value-text {
-  user-select: all;
+    user-select: all;
 }
 /* #endregion Data Labels & Values  */
 
 /* #region stacked */
 .stackable-container.stacked {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .stackable-container.stacked .chart-container {
-  min-width: var(--width-min-chart-container);
-  background: transparent;
-  height: 100%;
-  margin: 0;
-  display: grid;
-  grid-gap: var(--gap);
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr 2fr;
+    min-width: var(--width-min-chart-container);
+    background: transparent;
+    height: 100%;
+    margin: 0;
+    display: grid;
+    grid-gap: var(--gap);
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 2fr;
 }
 
 .stacked .data-label,
 .stacked .data-bar {
-  display: flex;
-  align-items: stretch;
+    display: flex;
+    align-items: stretch;
 }
 
 .stacked .data-label {
-  align-items: center;
+    align-items: center;
 }
 
 .stackable-bar.stacked,
 .stacked .bar-value {
-  border-radius: var(--radius-bar);
+    border-radius: var(--radius-bar);
 }
 /* #endregion stacked */
 
 /* #region linear */
 .stackable-container.linear {
-  display: flex;
+    display: flex;
 }
 
 .stackable-container.linear .chart-bars {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .linear .stackable-bar {
-  height: var(--height-stacked-bar);
+    height: var(--height-stacked-bar);
 }
 /* #endregion linear */
 
 /* #region Bar */
 .stackable-bar {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  cursor: default;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    cursor: default;
 }
 
 .stackable-bar.linear.tooltip:hover {
-  z-index: 100;
+    z-index: 100;
 }
 
 .linear .stacked-content {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
 }
 
 .linear .stacked-content * {
-  margin: 0;
+    margin: 0;
 }
 
 .linear .stacked-content .bar-value-text {
-  font-size: var(--font-size-value-linear);
+    font-size: var(--font-size-value-linear);
 }
 
 .linear .bar-label-text {
-  font-size: var(--font-size-label-linear);
-  white-space: nowrap;
+    font-size: var(--font-size-label-linear);
+    white-space: nowrap;
 }
 /* #endregion Bar */
 
 /* #region Tooltip */
 .tooltip-container {
-  z-index: var(--top);
-  background-color: white;
-  margin: var(--margin-tooltip);
-  padding: var(--padding-tooltip);
-  border-radius: var(--radius-tooltip);
-  box-shadow: var(--shadow-tooltip);
-  font-weight: bold;
+    z-index: var(--top);
+    background-color: white;
+    margin: var(--margin-tooltip);
+    padding: var(--padding-tooltip);
+    border-radius: var(--radius-tooltip);
+    box-shadow: var(--shadow-tooltip);
+    font-weight: bold;
 }
 /* #endregion Tooltip */

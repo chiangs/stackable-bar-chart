@@ -13,22 +13,22 @@ const mockData: BarProps[] = [
     {
         value: 10.6,
         label: 'test 1',
-        color: '#F7A355',
+        // color: '#F7A355',
     },
     {
         value: 50,
         label: 'test 2',
-        color: '#4D93E5',
+        // color: '#4D93E5',
     },
     {
         value: 1000,
         label: 'test 3',
-        color: '#37C6A8',
+        // color: '#37C6A8',
     },
     {
         value: -100,
         label: 'test 4 negative',
-        color: '#439090',
+        // color: '#439090',
     },
 ];
 
@@ -39,7 +39,6 @@ const title = <h2>Chart title</h2>;
 const App = () => (
     <article style={style}>
         <StackableBarChart
-            mode={'stacked'}
             colorBackground={background}
             data={mockData}
             clickHandler={onBarClick}>

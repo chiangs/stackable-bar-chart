@@ -3,6 +3,7 @@ import './index.css';
 import type {
     BarData,
     BarProps,
+    ChartData,
     ChartProps,
     Rounding,
     SortProperty,
@@ -22,7 +23,7 @@ const NAME_COMPONENT = 'stackable-container';
  * @returns sorted collection from largest or smallest
  */
 const sortDataSmallBig = (
-    data: BarProps[],
+    data: ChartData[],
     sortedBy: SortProperty = 'none'
 ): BarProps[] =>
     data.sort((a, b) =>
@@ -51,10 +52,16 @@ const roundPortion = (value: number, method: Rounding): number => {
  * @returns BarProps[] with portion calculations
  */
 const calcPortionsForData = (
-    data: BarProps[],
+    data: ChartData[],
     method: Rounding,
     sortedBy: SortProperty = 'none'
 ): BarProps[] => {
+    // CB - normalize data
+    const normalizeData = (collection: ChartData[]) =>
+        collection.map((d) => ({
+            ...d,
+            value: d.value < 0 ? 0 : d.value,
+        }));
     // CB - actual percentage
     const calcPortion = (value: number, total: number, method: Rounding) => {
         const portion = (value / total) * 100;
@@ -76,17 +83,22 @@ const calcPortionsForData = (
         });
         return largest;
     };
+    // CB - Find sum of all values
+    const calcSum = (cllection: ChartData[]) =>
+        cllection.reduce((t, o) => {
+            return t + o.value;
+        }, 0);
+    // Normalize data values
+    const normalized = normalizeData(data);
     // largest used as base of 100% of container
     const largest =
         sortedBy === 'none'
-            ? findLargest(data)
+            ? findLargest(normalized)
             : sortedBy === 'smallest'
-            ? data[data.length - 1]
-            : data[0];
-    const sum = data.reduce((t, o) => {
-        return t + o.value;
-    }, 0);
-    const updated = data.map((d) => ({
+            ? normalized[normalized.length - 1]
+            : normalized[0];
+    const sum = calcSum(normalized);
+    const updated = normalized.map((d) => ({
         ...d,
         portion: calcPortion(d.value, sum, method),
         renderPortion: calcRenderPortion(d.value, largest.value),
@@ -94,8 +106,6 @@ const calcPortionsForData = (
     return updated;
 };
 
-// TODO: Readme
-// TODO: handle negative
 const StackableBarChart: React.FC<Props> = ({
     data = [],
     mode = 'stacked',

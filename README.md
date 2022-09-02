@@ -21,6 +21,10 @@
 
 # Introduction
 
+My `waffle-chart` library will soon release to support up to three values. I think this is the sweet spot for showing portions on this kind of visualization.
+
+That's why I created `stackable-bar-chart`. This library will visualize either a stack of bars or a single bar with proportional segments based on a collection of values of up to basically any amount. You can also sort from largest to smallest and pass in any colors to help tell the story of your data.
+
 This is a zero-dependency library built with React, Typescript & Vite. 
 
 No `D3` only `HTML`, `CSS`, and `JS/TS`.
@@ -41,16 +45,50 @@ Live demo via Storybook [coming soon]().
 
 ## API
 
-The chart will render with just the default props.
+The chart will render with just the default props, you just want see any bars without any `data`.
 
-| Prop              | Type                    | Default   | Notes |
-|-------------------|-------------------------|-----------|-------|
+The API follows the `ChartProp` interface
 
+| Prop               | Type                                                           | Default     | Notes |
+|--------------------|----------------------------------------------------------------|-------------|-------|
+|  data              | ChartData[]                                                    | []          |
+|  mode              | 'stacked' , 'linear'                                           | 'stacked'    |
+|  roundTo           | 'nearest' , 'up' , 'down'                                      | 'nearest'   |
+|  sortBy            | 'none' , 'largest' , 'smallest'                                | 'none'      |
+|  titlePosition     | 'none' , 'top' , 'bottom' , 'left' , 'right' , 'default'       | 'default'   |
+|  showTooltip       | boolean                                                        | true        |
+|  showPercentage    | boolean                                                        | false       |
+|  clickHandler      | (Partial<BarData>) => any                                      | undefined   |
+|  colorBackground   | string                                                         | undefined   |
+|  children          | any                                                            | undefined   | Use this to insert any jsx, positioned by titlePosition
 
+```ts
+export interface ChartData {
+    label: string;
+    value: number;
+    color?: string;
+}
+
+// The part in emitted in click
+export interface BarData extends ChartData {
+    label: string;
+    value: number;
+    percentage?: number;
+}
+```
 
 ### Colors
 
+You can pass in colors via `color` in `ChartData` or just override in `:root` or some scope above the component for the following:
+
+- `--color-fallback`: Note that this will only change the fallback color for all bars and labels
+- `colorBrackground` API prop can be any color but to get the 'punch-out' look in sample images where the text matches the background in the bar, this prop should match the container background.
+
+The colors can be in any valid CSS color prop (HEX, RGB, HSL, RGBA, HSLA, etc) as long as it's passed as a string.
+
 ### Fonts and other styling
+
+This chart will inherit the fonts from the the upper scope (e.g., `:root`).
 
 ## Installing
 
@@ -76,7 +114,7 @@ import 'node_modules/stackable-bar-chart/dist/style.css';
 ```
 
 ```ts
-import type { ChartProps } from 'stackable-bar-chart';
+import type { ChartData, ChartProps, BarData } from 'stackable-bar-chart';
 import { StackableBarChart } from 'stackable-bar-chart';
 
 type Props = ChartProps;
@@ -101,13 +139,13 @@ export const links: LinksFunction = () => [
 
 ### Updating
 
-npm 
-
+Using `NPM`:
+ 
 ```bash
 npm update
 ```
 
-yarn
+Using `Yarn`:
 
 ```bash
 yarn upgrade stackable-bar-chart@^
@@ -131,6 +169,21 @@ Testing methodology follows the testing-library guiding principles and focusing 
 Latest coverage report:
 
 ```
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |     100 |    98.43 |   86.95 |     100 |                   
+ Bar               |     100 |      100 |   77.77 |     100 |                   
+  index.tsx        |     100 |      100 |   77.77 |     100 |                   
+ ChartContainer    |     100 |      100 |     100 |     100 |                   
+  index.tsx        |     100 |      100 |     100 |     100 |                   
+ Label             |     100 |      100 |     100 |     100 |                   
+  index.tsx        |     100 |      100 |     100 |     100 |                   
+ StackableBarChart |     100 |    97.22 |    90.9 |     100 |                   
+  index.tsx        |     100 |    97.22 |    90.9 |     100 | 119               
+ Tooltip           |     100 |      100 |     100 |     100 |                   
+  index.tsx        |     100 |      100 |     100 |     100 |                   
+-------------------|---------|----------|---------|---------|-------------------
 ```
 
 Testing is built and run with:

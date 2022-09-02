@@ -6,32 +6,32 @@ export type Position = 'none' | 'top' | 'bottom' | 'left' | 'right' | 'default';
 
 export type SortProperty = 'none' | 'largest' | 'smallest';
 
-export interface BarData {
-    color?: string;
-    background?: string;
+export interface ChartData {
     label: string;
     value: number;
+    color?: string;
+}
+
+export interface BarData extends ChartData {
+    background?: string;
     percentage?: number;
     e?: React.MouseEvent<HTMLDivElement, MouseEvent>;
     k?: React.KeyboardEvent<HTMLDivElement>;
 }
 
-export interface BarProps {
-    label: string;
-    color?: string;
+export interface BarProps extends ChartData {
     background?: string;
-    mode?: Mode;
-    value: number;
     portion?: number;
     renderPortion?: number;
     showPercentage?: boolean;
     showTooltip?: boolean;
+    mode?: Mode;
     revealTooltipHandler?: (data: BarData | null) => void;
     barClickHandler?: (d: Partial<BarData>) => Partial<BarData> | null;
 }
 
 export interface ChartProps {
-    data?: BarProps[];
+    data?: ChartData[];
     mode?: Mode;
     roundTo?: Rounding;
     sortBy?: SortProperty;
