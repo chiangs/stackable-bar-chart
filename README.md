@@ -39,7 +39,7 @@ Sorting in many ways!
 
 Tooltip by mouse hover or keyboard focus for smaller or hard to see values
 
-<img src="/assets/linear-tooltip.jpg.jpg" alt="linear with tooltip on hover" width="300"/>
+<img src="/assets/linear-tooltip.jpg" alt="linear with tooltip on hover" width="300"/>
 <img src="/assets/stacked-tooltip.jpg" alt="stacked with tooltip on hover" width="300"/>
 <img src="/assets/linear-keyboard-tooltip.jpg" alt="linear tooltip keyboard focus" width="300"/>
 <img src="/assets/stacked-keyboard-tooltip.jpg" alt="stacked tooltip keyboard focus" width="300"/>
