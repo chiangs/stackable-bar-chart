@@ -8,6 +8,7 @@
   - [Demo](#demo)
   - [Supporting reads](#supporting-reads)
   - [API](#api)
+    - [Chart title](#chart-title)
     - [Colors](#colors)
     - [Fonts and other styling](#fonts-and-other-styling)
   - [Installing](#installing)
@@ -23,7 +24,34 @@
 
 My `waffle-chart` library will soon release to support up to three values. I think this is the sweet spot for showing portions on this kind of visualization.
 
-That's why I created `stackable-bar-chart`. This library will visualize either a stack of bars or a single bar with proportional segments based on a collection of values of up to basically any amount. You can also sort from largest to smallest and pass in any colors to help tell the story of your data.
+That's why I created `stackable-bar-chart`. This library will visualize either a stack of bars _(like a bar chart)_ or a single bar with proportional segments _(sort of like a one-dimensional treemap)_ based on a collection of values of up to basically any amount. You can also sort from largest to smallest and pass in any colors to help tell the story of your data.
+
+***Chocolate Bars are better than Pies & Donuts***
+```js
+🍫 > 🍩
+```
+
+<img src="/assets/linear.jpg" alt="linear like a one-dimenstional treemap" width="300"/>
+
+Sorting in many ways!
+
+<img src="/assets/stacked-sorted-largest.jpg" alt="stacked sorted largest to smallest" width="300"/>
+
+Tooltip by mouse hover or keyboard focus for smaller or hard to see values
+
+<p>
+  <img src="/assets/stacked-tooltip.jpg" alt="stacked sorted largest to smallest" width="300"/>
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  <img src="/assets/linear-keyboard-tooltip.jpg" alt="stacked sorted largest to smallest" width="300"/>
+</p>
+
+Rather focus on the percentage than the value?
+
+<img src="/assets/linear-percentage-tooltip.jpg" alt="stacked sorted largest to smallest" width="300"/>
+
 
 This is a zero-dependency library built with React, Typescript & Vite. 
 
@@ -37,11 +65,15 @@ If you are using this in a commercial project, please consider leaving a donatio
 
 ## Limitations
 
+- ***Negative values*** are normalized to 0 since this chart was meant to show proportions of a whole in different ways, so when using `stacked` mode a negative value won't have a bar. If a negative bar is requested enough by users, I will consider supporting it.
+
 ## Demo
 
 Live demo via Storybook [coming soon]().
 
 ## Supporting reads
+
+[When to use a bar chart instead of a pie chart](https://www.highcharts.com/blog/tutorials/207-when-to-use-a-bar-chart-instead-of-a-pie-chart/)
 
 ## API
 
@@ -76,6 +108,34 @@ export interface BarData extends ChartData {
     percentage?: number;
 }
 ```
+
+### Chart title
+
+You can pass anything in `children` as the title and will be subjected to the `titlePosition` prop.
+
+I recommend you add a styling the following styling rule when using `left` or `right` positioning: 
+
+```css
+.your-title-wrapper-classname {
+   whiteSpace: 'nowrap'
+}
+```
+
+For example:
+
+```jsx
+<StackableBarChart {...props}>
+    <h3 style={{ whiteSpace: 'nowrap' }}>🍻 Custom title 🍫</h3>
+</StackableBarChart>
+```
+<p>
+  <img src="/assets/linear-custom-title-left.jpg" alt="linear with custom title on left" width="300"/>
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  <img src="/assets/stacked-custom-title-bottom.jpg" alt="stacked with custom title on bottom" width="300"/>
+</p>
 
 ### Colors
 
@@ -149,6 +209,10 @@ Using `Yarn`:
 
 ```bash
 yarn upgrade stackable-bar-chart@^
+
+#or 
+
+yarn upgrade stackable-bar-chart --latest
 ```
 ## Contributing
 

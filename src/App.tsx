@@ -11,24 +11,24 @@ const style = {
 
 const mockData: BarProps[] = [
     {
-        value: 10.6,
-        label: 'test 1',
-        // color: '#F7A355',
+        value: 100.61232131,
+        label: 'Coffee',
+        color: '#F7A355',
     },
     {
         value: 50,
-        label: 'test 2',
-        // color: '#4D93E5',
+        label: 'Beer',
+        color: '#4D93E5',
     },
     {
-        value: 1000,
-        label: 'test 3',
-        // color: '#37C6A8',
+        value: 23,
+        label: 'Water',
+        color: '#37C6A8',
     },
     {
-        value: -100,
-        label: 'test 4 negative',
-        // color: '#439090',
+        value: 67,
+        label: 'Wine',
+        color: '#439090',
     },
 ];
 

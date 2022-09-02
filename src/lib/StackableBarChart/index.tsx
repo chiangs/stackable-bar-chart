@@ -66,6 +66,10 @@ const calcPortionsForData = (
     const calcPortion = (value: number, total: number, method: Rounding) => {
         const portion = (value / total) * 100;
         const rounded = roundPortion(portion, method);
+        console.log(
+            '🚀 ~ file: index.tsx ~ line 69 ~ calcPortion ~ rounded',
+            rounded
+        );
         return rounded;
     };
     // CB - percentage for rendering visual size
@@ -100,6 +104,7 @@ const calcPortionsForData = (
     const sum = calcSum(normalized);
     const updated = normalized.map((d) => ({
         ...d,
+        value: roundPortion(d.value, method),
         portion: calcPortion(d.value, sum, method),
         renderPortion: calcRenderPortion(d.value, largest.value),
     }));
