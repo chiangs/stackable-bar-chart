@@ -146,7 +146,7 @@ describe('Integration test', () => {
         };
         rerender(<StackableBarChart {...props_with_percentages} />);
         screen.getByText(mockData[0].label);
-        screen.getByText(/- 100.6/i);
+        screen.getByText(/- 101/i);
         const percentages = screen.getAllByText(/%/i);
         expect(percentages.length).toBe(4);
     });

@@ -39,14 +39,10 @@ Sorting in many ways!
 
 Tooltip by mouse hover or keyboard focus for smaller or hard to see values
 
-<p>
-  <img src="/assets/stacked-tooltip.jpg" alt="stacked sorted largest to smallest" width="300"/>
-  &nbsp;
-  &nbsp;
-  &nbsp;
-  &nbsp;
-  <img src="/assets/linear-keyboard-tooltip.jpg" alt="stacked sorted largest to smallest" width="300"/>
-</p>
+<img src="/assets/linear-tooltip.jpg.jpg" alt="linear with tooltip on hover" width="300"/>
+<img src="/assets/stacked-tooltip.jpg" alt="stacked with tooltip on hover" width="300"/>
+<img src="/assets/linear-keyboard-tooltip.jpg" alt="linear tooltip keyboard focus" width="300"/>
+<img src="/assets/stacked-keyboard-tooltip.jpg" alt="stacked tooltip keyboard focus" width="300"/>
 
 Rather focus on the percentage than the value?
 
@@ -236,17 +232,17 @@ Latest coverage report:
 -------------------|---------|----------|---------|---------|-------------------
 File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -------------------|---------|----------|---------|---------|-------------------
-All files          |     100 |    98.43 |   86.95 |     100 |                   
- Bar               |     100 |      100 |   77.77 |     100 |                   
-  index.tsx        |     100 |      100 |   77.77 |     100 |                   
- ChartContainer    |     100 |      100 |     100 |     100 |                   
-  index.tsx        |     100 |      100 |     100 |     100 |                   
- Label             |     100 |      100 |     100 |     100 |                   
-  index.tsx        |     100 |      100 |     100 |     100 |                   
- StackableBarChart |     100 |    97.22 |    90.9 |     100 |                   
-  index.tsx        |     100 |    97.22 |    90.9 |     100 | 119               
- Tooltip           |     100 |      100 |     100 |     100 |                   
-  index.tsx        |     100 |      100 |     100 |     100 |                   
+All files          |     100 |    98.55 |      88 |     100 | 
+ Bar               |     100 |      100 |   77.77 |     100 | 
+  index.tsx        |     100 |      100 |   77.77 |     100 | 
+ ChartContainer    |     100 |      100 |     100 |     100 | 
+  index.tsx        |     100 |      100 |     100 |     100 | 
+ Label             |     100 |      100 |     100 |     100 | 
+  index.tsx        |     100 |      100 |     100 |     100 | 
+ StackableBarChart |     100 |    97.56 |    92.3 |     100 | 
+  index.tsx        |     100 |    97.56 |    92.3 |     100 | 135
+ Tooltip           |     100 |      100 |     100 |     100 | 
+  index.tsx        |     100 |      100 |     100 |     100 | 
 -------------------|---------|----------|---------|---------|-------------------
 ```
 
