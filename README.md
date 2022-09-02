@@ -109,7 +109,7 @@ export interface BarData extends ChartData {
 
 You can pass anything in `children` as the title and will be subjected to the `titlePosition` prop.
 
-I recommend you add a styling the following styling rule when using `left` or `right` positioning: 
+I recommend you add the following styling rule when using `left` or `right` positioning to prevent the title from wrapping: 
 
 ```css
 .your-title-wrapper-classname {
