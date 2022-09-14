@@ -1,5 +1,5 @@
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/chiangs/stackable-bar-chart/Release?style=for-the-badge)
-![GitHub all releases](https://img.shields.io/github/downloads/chiangs/stackable-bar-chart/total?style=for-the-badge)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/stackable-bar-chart?style=for-the-badge)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/chiangs/stackable-bar-chart?style=for-the-badge)
 
 - [Introduction](#introduction)
